@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996775419598",
+    "project_id": "academic-506d7",
+    "storage_bucket": "academic-506d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996775419598:android:96a64e2b4b407372063a9f",
+        "android_client_info": {
+          "package_name": "com.simonedifonzo.academic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996775419598-sd2ddhcbsf5kvqeqmi1mo1ubptehsjcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL2y2pC89Fn0H9WWnoQOdIhAUAgnsA8UY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996775419598-sd2ddhcbsf5kvqeqmi1mo1ubptehsjcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

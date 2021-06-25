@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Academic</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_library">Library</string>
+    <string name="searchbox_text">What are you searching for?</string>
+    <string name="var_email">Email</string>
+    <string name="var_password">Password</string>
+    <string name="var_login">Login</string>
+    <string name="var_register">Register</string>
+    <string name="var_back">Back</string>
+    <string name="var_firstname">First Name</string>
+    <string name="var_lastname">Last Name</string>
+    <string name="var_log_off">Log off</string>
+    <string name="var_profile">Profile</string>
+    <string name="nav_personal">Personal</string>
+    <string name="var_change_profile_picture">Change profile picture</string>
+    <string name="var_verify_account">Verify Account</string>
+</resources>
