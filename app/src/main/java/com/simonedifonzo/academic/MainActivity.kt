@@ -1,18 +1,20 @@
 package com.simonedifonzo.academic
 
+import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.Task
+import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.DocumentSnapshot
-import com.simonedifonzo.academic.classes.Course
+import com.google.firebase.storage.StorageReference
 import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.*
-import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +23,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainLayout : LinearLayout
 
-    private var isLoaded: Boolean = false
+    private lateinit var txtAbout : TextView
+
+    private lateinit var picProfile : CircleImageView
+    private lateinit var picVerified : ImageView
+    private lateinit var txtName : TextView
+    private lateinit var txtEmail : TextView
+
     private var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,57 +37,55 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Objects.requireNonNull(this.supportActionBar)!!.hide()
 
-        mainLayout = findViewById(R.id.main_layout)
+        initViews()
 
-        GlobalScope.launch(Dispatchers.IO) {
-//            userData = usersReference.get().await().toObject(User::class.java)!!
+        userData = intent.getSerializableExtra("user") as User
+        Snackbar.make(mainLayout, "Welcome back " + userData.first + "!", Snackbar.LENGTH_SHORT).show()
 
-            val data = async { loadUserData() }
-            data.await()
-            data.join()
-        }
+        initInfo()
+
+//        GlobalScope.launch(Dispatchers.IO) { {
+//            delay(5000)
+//            withContext(Dispatchers.Main) {
+//                // if we use `Dispatchers.Main` as a coroutine context next two lines will be executed on UI thread.
+//                doSomething()
+//                doAnotherThing()
+//            }
+//        }
+
     }
 
-    private suspend fun loadUserData() {
-        Snackbar.make(mainLayout, "loading user data...", Snackbar.LENGTH_SHORT).show()
+    private fun initViews() {
+        mainLayout = findViewById(R.id.main_layout)
 
-        var usersReference = service.firestore
-            .collection("users")
-            .document(service.auth.uid.toString())
+        txtAbout    = findViewById(R.id.txt_about)
 
-        usersReference.get().addOnCompleteListener { task: Task<DocumentSnapshot?> ->
+        picProfile  = findViewById(R.id.pic_profile)
+        picVerified = findViewById(R.id.verified_tick)
+        txtName     = findViewById(R.id.txt_name)
+        txtEmail    = findViewById(R.id.txt_email)
+    }
 
-            var document = task.result
-            if (task.isSuccessful && document != null) {
-                userData.email      = document.getString("email").toString()
-                userData.first      = document.getString("first").toString()
-                userData.last       = document.getString("last").toString()
-                userData.profilePic = document.getString("profilePic").toString()
-                userData.lastChange = document.getString("lastChange").toString()
+    private fun initInfo() {
 
-                userData.specialization = Specialization.createSpecialization(
-                    document.getString("specialization").toString()
-                )
+        // Load profile picture if user has one
+        if (userData.profilePic != "null") {
+            var fileRef = service.storage?.child(userData.profilePic)
 
-                userData.starredCourses.clear()
-
-                val data     = document.get("starredCourses").toString()
-                val array    = data.subSequence(1, data.length - 1).split(", ")
-
-//                Snackbar.make(mainLayout, "document: " + array, Snackbar.LENGTH_SHORT).show()
-
-                for (course in array) {
-                    Snackbar.make(mainLayout, "inFor: " + course, Snackbar.LENGTH_SHORT).show()
-
-                    userData.starredCourses.add(Course.generateCourse(service, course))
-                }
-
-//                Snackbar.make(mainLayout, "document: " + userData.starredCourses[0].name, Snackbar.LENGTH_SHORT).show()
+            fileRef?.downloadUrl?.addOnSuccessListener {
+                Picasso.get().load(it).into(picProfile)
             }
-        }.await()
+        }
 
-        isLoaded = true
-//        Snackbar.make(mainLayout, "data loaded successfully", Snackbar.LENGTH_SHORT).show()
+        // Check if user is email verified
+        if (service.auth.currentUser?.isEmailVerified != true)
+        {
+            picVerified.isVisible = false
+        }
+
+        // Load user data into textViews
+        txtName.setText(userData.first + " " + userData.last)
+        txtEmail.setText(userData.email)
     }
 
     override fun onBackPressed() {
