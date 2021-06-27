@@ -98,6 +98,7 @@ class LauncherActivity : AppCompatActivity() {
                 userData.last       = document.getString("last").toString()
                 userData.profilePic = document.getString("profilePic").toString()
                 userData.lastChange = document.getString("lastChange").toString()
+                userData.rank       = document.getString("rank").toString()
 
                 userData.specialization = Specialization.createSpecialization(
                     document.getString("specialization").toString()

@@ -9,8 +9,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.simonedifonzo.academic.R
 
-public class CourseAdapter(options: FirestoreRecyclerOptions<Course>) :
+public class CourseAdapter(
+    private val options: FirestoreRecyclerOptions<Course>,
+    private val listener: OnClickListener
+) :
     FirestoreRecyclerAdapter<Course, CourseAdapter.CourseHolder>(options) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseHolder {
         val v: View = LayoutInflater.from(parent.context).inflate(
             R.layout.course_item,
@@ -26,10 +30,25 @@ public class CourseAdapter(options: FirestoreRecyclerOptions<Course>) :
         holder.tvCode.text          = model.id
     }
 
-    inner class CourseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CourseHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var tvTitle: TextView = itemView.findViewById(R.id.text_view_title)
         var tvDescription: TextView = itemView.findViewById(R.id.text_view_description)
         var tvCode: TextView = itemView.findViewById(R.id.text_view_code)
 
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface OnClickListener {
+        fun onItemClick(position: Int)
     }
 }

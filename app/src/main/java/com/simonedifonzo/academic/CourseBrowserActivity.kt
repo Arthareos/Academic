@@ -2,9 +2,11 @@ package com.simonedifonzo.academic
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +20,7 @@ import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
 import java.util.*
 
-class CourseBrowserActivity : AppCompatActivity() {
+class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener {
 
     private var service: GoogleService = GoogleService()
     private var userData: User = User()
@@ -72,17 +74,37 @@ class CourseBrowserActivity : AppCompatActivity() {
                 + " / "
                 + userData.specialization.year)
 
+        if (userData.rank == "user") {
+            btnAdd.visibility = View.GONE
+        }
+
         val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING)
 
         val options: FirestoreRecyclerOptions<Course> = FirestoreRecyclerOptions.Builder<Course>()
             .setQuery(query, Course::class.java)
             .build()
 
-        adapter = CourseAdapter(options)
+        adapter = CourseAdapter(options, this)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+    }
+
+    override fun onItemClick(position: Int) {
+//        Toast.makeText(this, "Item $position", Toast.LENGTH_SHORT).show()
+//        val clickedItem = adapter.getItem(position).
+
+        val intent = Intent(this@CourseBrowserActivity, CourseActivity::class.java)
+
+        val bundle = Bundle()
+        bundle.putSerializable("user", userData)
+        bundle.putSerializable("course", adapter.getItem(position))
+        intent.putExtras(bundle)
+
+        startActivity(intent)
     }
 
     override fun onBackPressed() {

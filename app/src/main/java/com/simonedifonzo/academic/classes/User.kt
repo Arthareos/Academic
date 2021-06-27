@@ -8,6 +8,7 @@ class User : Serializable {
     var last                                = "null"
     var email                               = "null"
     var profilePic                          = "null"
+    var rank                                = "null"
     var starredCourses: ArrayList<Course>   = ArrayList()
     var specialization: Specialization      = Specialization()
     var lastChange: String                  = "null"

@@ -16,6 +16,10 @@ import com.google.firebase.storage.UploadTask
 import com.simonedifonzo.academic.R
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.*
 
 class PhotoSourceFragment(private var service: GoogleService, private var userData: User) :
@@ -37,13 +41,11 @@ class PhotoSourceFragment(private var service: GoogleService, private var userDa
 
         btnGallery = view.findViewById(R.id.btn_gallery)
         btnGallery.setOnClickListener {
-            Toast.makeText(context, "You selected gallery", Toast.LENGTH_SHORT).show()
             ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).cropSquare().start()
         }
 
         btnCamera = view.findViewById(R.id.btn_camera)
         btnCamera.setOnClickListener {
-            Toast.makeText(context, "You selected camera", Toast.LENGTH_SHORT).show()
             ImagePicker.with(this).cameraOnly().cropSquare().start()
         }
     }
@@ -51,11 +53,13 @@ class PhotoSourceFragment(private var service: GoogleService, private var userDa
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE) {
+        if (data == null) {
+            Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            if (data != null) {
-                data.data?.let { uploadImageToFirebase(it, "profile.jpg") }
-            }
+        if (resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE) {
+            data.data?.let { uploadImageToFirebase(it, "profile.jpg") }
         }
     }
 
@@ -65,21 +69,18 @@ class PhotoSourceFragment(private var service: GoogleService, private var userDa
             service.storage?.child("users/" + service.auth.uid.toString() + "/" + name)
 
 
-        fileRef?.putFile(imageUri)?.addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
-            Toast.makeText(context, "Image uploaded", Toast.LENGTH_SHORT).show()
+        fileRef?.putFile(imageUri)?.addOnSuccessListener {
 
-            userData.profilePic = ("users/" + service.auth.uid.toString() + "/" + name)
+            if (name == "profile.jpg") {
+                Toast.makeText(context, "Profile picture uploaded", Toast.LENGTH_SHORT).show()
 
-            service.firestore
-                .collection("users")
-                .document(Objects.requireNonNull(service.auth.uid.toString()))
-                .update("profilePic", userData.profilePic)
+                userData.profilePic = ("users/" + service.auth.uid.toString() + "/" + name)
 
-
-            fileRef.downloadUrl
-                .addOnSuccessListener {
-                    Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-                }
+                service.firestore
+                    .collection("users")
+                    .document(Objects.requireNonNull(service.auth.uid.toString()))
+                    .update("profilePic", userData.profilePic)
+            }
         }?.addOnFailureListener {
             Toast.makeText(context, "Image upload failed", Toast.LENGTH_SHORT).show()
         }
