@@ -11,5 +11,4 @@ class User : Serializable {
     var starredCourses: ArrayList<Course>   = ArrayList()
     var specialization: Specialization      = Specialization()
     var lastChange: String                  = "null"
-
 }

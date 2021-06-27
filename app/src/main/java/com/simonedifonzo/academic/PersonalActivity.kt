@@ -1,15 +1,17 @@
 package com.simonedifonzo.academic
 
 import android.content.Intent
-import android.opengl.Visibility
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
+import com.simonedifonzo.academic.helpers.PhotoSourceFragment
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
@@ -30,6 +32,8 @@ class PersonalActivity : AppCompatActivity() {
     private lateinit var btnVerify: Button
     private lateinit var btnLogoff: Button
 
+    private lateinit var photoSourceFragment: PhotoSourceFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal)
@@ -40,6 +44,16 @@ class PersonalActivity : AppCompatActivity() {
         userData = intent.getSerializableExtra("user") as User
 
         initInfo()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this@PersonalActivity, MainActivity::class.java)
+
+        val bundle = Bundle()
+        bundle.putSerializable("user", userData)
+        intent.putExtras(bundle)
+
+        startActivity(intent)
     }
 
     private fun initViews() {
@@ -82,8 +96,9 @@ class PersonalActivity : AppCompatActivity() {
         }
 
         // Routes init
+        photoSourceFragment = PhotoSourceFragment(userData = userData, service = service)
         btnChangePic.setOnClickListener {
-            // TODO: Add code
+            photoSourceFragment.show(supportFragmentManager, "photoSourceFragment")
         }
 
         btnVerify.setOnClickListener {
@@ -110,15 +125,5 @@ class PersonalActivity : AppCompatActivity() {
             val intent = Intent(this@PersonalActivity, LauncherActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onBackPressed() {
-        val intent = Intent(this@PersonalActivity, MainActivity::class.java)
-
-        val bundle = Bundle()
-        bundle.putSerializable("user", userData)
-        intent.putExtras(bundle)
-
-        startActivity(intent)
     }
 }
