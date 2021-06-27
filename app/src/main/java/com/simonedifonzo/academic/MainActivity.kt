@@ -1,15 +1,15 @@
 package com.simonedifonzo.academic
 
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.storage.StorageReference
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
 import com.squareup.picasso.Picasso
@@ -23,12 +23,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainLayout : LinearLayout
 
-    private lateinit var txtAbout : TextView
-
     private lateinit var picProfile : CircleImageView
     private lateinit var picVerified : ImageView
     private lateinit var txtName : TextView
     private lateinit var txtEmail : TextView
+
+    private lateinit var cardAbout : CardView
+    private lateinit var cardCourse : CardView
+    private lateinit var cardAcademic : CardView
+    private lateinit var cardBook : CardView
 
     private var backPressedTime: Long = 0
 
@@ -40,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
         userData = intent.getSerializableExtra("user") as User
-        Snackbar.make(mainLayout, "Welcome back " + userData.first + "!", Snackbar.LENGTH_SHORT).show()
 
         initInfo()
 
@@ -58,12 +60,15 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         mainLayout = findViewById(R.id.main_layout)
 
-        txtAbout    = findViewById(R.id.txt_about)
-
         picProfile  = findViewById(R.id.pic_profile)
         picVerified = findViewById(R.id.verified_tick)
         txtName     = findViewById(R.id.txt_name)
         txtEmail    = findViewById(R.id.txt_email)
+
+        cardAbout       = findViewById(R.id.card_about)
+        cardCourse      = findViewById(R.id.card_course)
+        cardAcademic    = findViewById(R.id.card_academic)
+        cardBook        = findViewById(R.id.card_book)
     }
 
     private fun initInfo() {
@@ -86,6 +91,28 @@ class MainActivity : AppCompatActivity() {
         // Load user data into textViews
         txtName.setText(userData.first + " " + userData.last)
         txtEmail.setText(userData.email)
+
+        // Routes init
+        cardAbout.setOnClickListener {
+            val intent = Intent(this@MainActivity, PersonalActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
+        }
+
+        cardCourse.setOnClickListener {
+            val intent = Intent(this@MainActivity, CourseBrowserActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
+        }
+
     }
 
     override fun onBackPressed() {

@@ -6,14 +6,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
-import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.Utils
+import com.google.firebase.firestore.DocumentSnapshot
+import com.simonedifonzo.academic.classes.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    private var service: GoogleService = GoogleService()
+    private var service:    GoogleService   = GoogleService()
+    private var userData:   User            = User()
 
     private lateinit var emailBox:      EditText
     private lateinit var passwordBox:   EditText
@@ -85,8 +92,20 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "Welcome to Booklet!",
                                 Toast.LENGTH_SHORT).show()
 
-                            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-                            startActivity(intent)
+                            GlobalScope.launch(Dispatchers.IO) {
+                                var data = async { loadUserData() }
+                                data.await()
+                                data.join()
+
+                                val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+
+                                val bundle = Bundle()
+                                bundle.putSerializable("user", userData)
+                                intent.putExtras(bundle)
+
+                                startActivity(intent)
+                            }
+
 
                         }.addOnFailureListener { e ->
                             Toast.makeText(this@RegisterActivity, "Error: " + e.message + "!",
@@ -109,5 +128,35 @@ class RegisterActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
+    }
+
+    private suspend fun loadUserData() {
+        var usersReference = service.firestore
+            .collection("users")
+            .document(service.auth.uid.toString())
+
+        usersReference.get().addOnCompleteListener { task: Task<DocumentSnapshot?> ->
+
+            var document = task.result
+            if (task.isSuccessful && document != null) {
+                userData.email      = document.getString("email").toString()
+                userData.first      = document.getString("first").toString()
+                userData.last       = document.getString("last").toString()
+                userData.profilePic = document.getString("profilePic").toString()
+                userData.lastChange = document.getString("lastChange").toString()
+
+                userData.specialization = Specialization.createSpecialization(
+                    document.getString("specialization").toString()
+                )
+
+                userData.starredCourses.clear()
+
+                val data     = document.get("starredCourses").toString()
+                val array    = data.subSequence(1, data.length - 1).split(", ")
+                for (course in array) {
+                    userData.starredCourses.add(Course.generateCourse(service, course))
+                }
+            }
+        }.await()
     }
 }

@@ -7,28 +7,30 @@
     tools:context=".MainActivity"
 
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:id="@+id/main_layout">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
 
-        android:layout_margin="16dp">
+        android:background="@drawable/header_light"
+        android:elevation="64dp"
+        >
 
         <TextView
-            android:id="@+id/app_name"
-            android:layout_width="0dp"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:fontFamily="@font/roboto_slab"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/kTitleTextColour"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:fontFamily="@font/roboto_slab"
+            android:textSize="36sp"
+            />
+    </LinearLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -63,6 +65,7 @@
 
             android:background="@drawable/card_light"
             app:cardElevation="64dp"
+            app:cardCornerRadius="8dp"
 
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
@@ -127,19 +130,19 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
 
+                    android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
+
                     android:text="Your email"
                     android:textColor="@color/kTitleTextColour"
-
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_settings"
                     app:layout_constraintEnd_toStartOf="@+id/btn_settings"
-                    app:layout_constraintStart_toEndOf="@+id/pic_profile" />
+                    app:layout_constraintStart_toEndOf="@+id/pic_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
                 <ImageView
                     android:id="@+id/btn_settings"
@@ -167,7 +170,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
 
-            android:text="What do you want look for?"
+            android:text="What are you looking for?"
             android:fontFamily="@font/roboto_slab"
 
             android:ellipsize="end"
@@ -178,12 +181,13 @@
             android:textSize="24sp" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_courses"
+            android:id="@+id/card_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:background="@drawable/card_light"
             app:cardElevation="64dp"
+            app:cardCornerRadius="8dp"
 
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
@@ -230,6 +234,7 @@
 
             android:background="@drawable/card_light"
             app:cardElevation="64dp"
+            app:cardCornerRadius="8dp"
 
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
@@ -277,6 +282,7 @@
 
             android:background="@drawable/card_light"
             app:cardElevation="64dp"
+            app:cardCornerRadius="8dp"
 
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"

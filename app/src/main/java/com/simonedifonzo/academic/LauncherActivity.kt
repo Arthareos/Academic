@@ -48,19 +48,15 @@ class LauncherActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
 
-            Snackbar.make(mainLayout, "loading user data...", Snackbar.LENGTH_SHORT).show()
-
             var googleData = async { GoogleService() }
             service = googleData.await()
             googleData.join()
 
-            var data = async { loadUserData() }
-            data.await()
-            data.join()
-
-            Snackbar.make(mainLayout, "user data loaded successfully", Snackbar.LENGTH_SHORT).show()
-
             if (service.auth.currentUser != null) {
+                var data = async { loadUserData() }
+                data.await()
+                data.join()
+
                 val intent = Intent(this@LauncherActivity, MainActivity::class.java)
 
                 val bundle = Bundle()
@@ -89,8 +85,6 @@ class LauncherActivity : AppCompatActivity() {
     }
 
     private suspend fun loadUserData() {
-        Snackbar.make(mainLayout, "loading user data...", Snackbar.LENGTH_SHORT).show()
-
         var usersReference = service.firestore
             .collection("users")
             .document(service.auth.uid.toString())
@@ -114,8 +108,6 @@ class LauncherActivity : AppCompatActivity() {
                 val data     = document.get("starredCourses").toString()
                 val array    = data.subSequence(1, data.length - 1).split(", ")
                 for (course in array) {
-                    Snackbar.make(mainLayout, "inFor: " + course, Snackbar.LENGTH_SHORT).show()
-
                     userData.starredCourses.add(Course.generateCourse(service, course))
                 }
             }
