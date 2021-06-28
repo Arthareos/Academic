@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.simonedifonzo.academic.classes.*
+import com.simonedifonzo.academic.helpers.ResourceTypeFragment
 import java.util.*
 
 class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
@@ -31,6 +32,8 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
     private lateinit var btnBack: ImageView
     private lateinit var txtName: TextView
     private lateinit var txtProfessor: TextView
+
+    private lateinit var resourceTypeFragment: ResourceTypeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +76,11 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
 
         if (userData.rank == "user") {
             btnAdd.visibility = View.GONE
+        }
+
+        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service)
+        btnAdd.setOnClickListener {
+            resourceTypeFragment.show(supportFragmentManager, "resourceTypeFragment")
         }
 
         val query: Query = resourceRef.orderBy("name", Query.Direction.ASCENDING)

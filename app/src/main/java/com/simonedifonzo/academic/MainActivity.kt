@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.simonedifonzo.academic.classes.GoogleService
+import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -104,6 +105,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         cardCourse.setOnClickListener {
+            if (userData.specialization == Specialization()) {
+                Snackbar.make(mainLayout, "You don't have any specialization selected yet", Snackbar.LENGTH_LONG)
+                    .setAction("Add specialization") {
+                        // TODO: Add implementation
+                    }.show()
+
+                return@setOnClickListener
+            }
+
             val intent = Intent(this@MainActivity, CourseBrowserActivity::class.java)
 
             val bundle = Bundle()
@@ -113,6 +123,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        cardAcademic.setOnClickListener {
+            if (userData.specialization == Specialization()) {
+                Snackbar.make(mainLayout, "You don't have any specialization selected yet", Snackbar.LENGTH_LONG)
+                    .setAction("Add specialization") {
+                        // TODO: Add implementation
+                    }.show()
+
+                return@setOnClickListener
+            }
+
+            val intent = Intent(this@MainActivity, AcademicWorkBrowserActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
+        }
     }
 
     override fun onBackPressed() {

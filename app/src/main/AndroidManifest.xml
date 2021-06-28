@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Academic">
-        <activity android:name=".CourseActivity"></activity>
+        <activity android:name=".AcademicWorkBrowserActivity"></activity>
+        <activity android:name=".CourseActivity" />
         <activity android:name=".CourseBrowserActivity" />
         <activity android:name=".PersonalActivity" />
         <activity android:name=".RegisterActivity" />

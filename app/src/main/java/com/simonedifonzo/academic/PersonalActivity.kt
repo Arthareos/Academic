@@ -1,14 +1,11 @@
 package com.simonedifonzo.academic
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
 import com.simonedifonzo.academic.helpers.PhotoSourceFragment

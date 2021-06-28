@@ -34,12 +34,12 @@
             android:fontFamily="@font/roboto_slab"
             android:textColor="@color/kTitleTextColour"
 
-            app:layout_constraintEnd_toStartOf="@+id/text_view_code"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_type"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_code"
+            android:id="@+id/text_view_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -48,7 +48,7 @@
             android:ellipsize="end"
             android:textSize="20sp"
             android:maxLines="1"
-            android:text="Code"
+            android:text="Type"
             android:fontFamily="@font/roboto_slab"
             android:textColor="@color/kTitleTextColour"
 

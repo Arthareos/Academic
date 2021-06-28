@@ -12,14 +12,9 @@ import android.widget.Toast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.simonedifonzo.academic.R
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import java.util.*
 
 class PhotoSourceFragment(private var service: GoogleService, private var userData: User) :
