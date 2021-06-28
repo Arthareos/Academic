@@ -10,18 +10,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.firestore.CollectionReference
+import com.simonedifonzo.academic.CourseActivity
 import com.simonedifonzo.academic.R
-import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.User
+import com.simonedifonzo.academic.classes.*
 
-class ResourceTypeFragment(private var service: GoogleService, private var userData: User) :
+class ResourceTypeFragment(private var service: GoogleService, private var userData: User, private var course: Course) :
     BottomSheetDialogFragment() {
-
-    val DOCUMENT = 0
-    val MEDIA = 1
 
     private lateinit var btnDocument : Button
     private lateinit var btnMedia : Button
+
+    private lateinit var resource : Resource
+    private lateinit var resourcesRef: CollectionReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,44 +35,40 @@ class ResourceTypeFragment(private var service: GoogleService, private var userD
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        resourcesRef = service.firestore.collection("universities")
+            .document(userData.specialization.university)
+            .collection("faculties")
+            .document(userData.specialization.faculty)
+            .collection(userData.specialization.year)
+            .document(course.id)
+            .collection("resources")
+
+        resource = Resource()
+        resource.uploaderID = service.auth.uid.toString()
+        resource.uploadedTime = Utils.currentTimeStamp
+
         btnDocument = view.findViewById(R.id.btn_document)
         btnDocument.setOnClickListener {
-            var intent = Intent()
-            intent.type = "pdf/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent, "Select DOCUMENT"), DOCUMENT)
+            val intent = Intent(context, CreateDocumentResource::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            bundle.putSerializable("course", course)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
         }
 
         btnMedia = view.findViewById(R.id.btn_media)
         btnMedia.setOnClickListener {
-            var intent = Intent()
-            intent.type = "docx/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent, "Select MEDIA"), MEDIA)
-        }
-    }
+            val intent = Intent(context, CreateMediaResource::class.java)
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            bundle.putSerializable("course", course)
+            intent.putExtras(bundle)
 
-        if (data == null) {
-            Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (resultCode != Activity.RESULT_OK) {
-            Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        when (resultCode) {
-            DOCUMENT -> {
-                upload(data!!.data)
-            }
-
-            MEDIA -> {
-                upload(data!!.data)
-            }
+            startActivity(intent)
         }
     }
 

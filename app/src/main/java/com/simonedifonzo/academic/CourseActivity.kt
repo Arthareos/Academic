@@ -1,6 +1,7 @@
 package com.simonedifonzo.academic
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.simonedifonzo.academic.classes.*
 import com.simonedifonzo.academic.helpers.ResourceTypeFragment
+import com.squareup.picasso.Picasso
 import java.util.*
 
 class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
@@ -32,6 +34,7 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
     private lateinit var btnBack: ImageView
     private lateinit var txtName: TextView
     private lateinit var txtProfessor: TextView
+    private lateinit var txtActions: TextView
 
     private lateinit var resourceTypeFragment: ResourceTypeFragment
 
@@ -60,6 +63,7 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
         btnBack             = findViewById(R.id.back_button)
         txtName             = findViewById(R.id.course_name)
         txtProfessor        = findViewById(R.id.course_professor)
+        txtActions          = findViewById(R.id.txt_actions)
 
         recyclerResource    = findViewById(R.id.recycler_view)
         btnAdd              = findViewById(R.id.button_add)
@@ -78,7 +82,7 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
             btnAdd.visibility = View.GONE
         }
 
-        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service)
+        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service, course = course)
         btnAdd.setOnClickListener {
             resourceTypeFragment.show(supportFragmentManager, "resourceTypeFragment")
         }
@@ -98,9 +102,27 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(this, "Item $position", Toast.LENGTH_SHORT).show()
-
         val clickedItem = adapter.getItem(position)
+
+        if (clickedItem.type == "web") {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(clickedItem.link))
+            startActivity(browserIntent)
+            return
+        }
+
+        if (clickedItem.type == "pdf") {
+            var fileRef = service.storage?.child(clickedItem.link)
+
+//            Toast.makeText(this, clickedItem.link, Toast.LENGTH_SHORT).show()
+
+            fileRef?.downloadUrl?.addOnSuccessListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.toString()))
+                startActivity(browserIntent)
+
+            }?.addOnFailureListener {
+                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onBackPressed() {

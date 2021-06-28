@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CourseActivity"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/header_light"
+            android:elevation="64dp"
+            android:orientation="vertical"
+
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+
+                android:ellipsize="end"
+                android:maxLines="2"
+
+                android:fontFamily="@font/roboto_slab"
+                android:text="Create new resource"
+                android:textColor="@color/kTitleTextColour"
+
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/header_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header_title"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+
+                android:ellipsize="end"
+                android:maxLines="1"
+
+                android:fontFamily="@font/roboto_slab"
+                android:text="Course name"
+                android:textColor="@color/kTitleTextColour"
+                android:textSize="16sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/header_title"
+                app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/header_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/txt_actions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Resource details:"
+                    android:fontFamily="@font/roboto_slab"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Resource name"
+                    android:fontFamily="@font/roboto_slab"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/text_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="16dp"
+
+                    android:background="@drawable/edit_text_box"
+                    android:hint="Name"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Resource description"
+                    android:fontFamily="@font/roboto_slab"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="16dp"
+
+                    android:background="@drawable/edit_text_box"
+                    android:hint="Description"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Resource link"
+                    android:fontFamily="@font/roboto_slab"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/text_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="8dp"
+
+                    android:background="@drawable/edit_text_box"
+                    android:hint="Link"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

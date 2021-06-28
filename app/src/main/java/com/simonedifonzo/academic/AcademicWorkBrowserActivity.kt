@@ -82,7 +82,7 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickLi
             btnAdd.visibility = View.GONE
         }
 
-        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service)
+//        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service)
         btnAdd.setOnClickListener {
             // TODO: Add functionality
 

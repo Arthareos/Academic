@@ -77,7 +77,7 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
             btnAdd.visibility = View.GONE
         }
 
-        val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING)
+        val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING).whereNotEqualTo("name", "null")
 
         val options: FirestoreRecyclerOptions<Course> = FirestoreRecyclerOptions.Builder<Course>()
             .setQuery(query, Course::class.java)
@@ -89,7 +89,6 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
     }
 
     override fun onItemClick(position: Int) {
