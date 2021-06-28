@@ -92,9 +92,6 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
     }
 
     override fun onItemClick(position: Int) {
-//        Toast.makeText(this, "Item $position", Toast.LENGTH_SHORT).show()
-//        val clickedItem = adapter.getItem(position).
-
         val intent = Intent(this@CourseBrowserActivity, CourseActivity::class.java)
 
         val bundle = Bundle()

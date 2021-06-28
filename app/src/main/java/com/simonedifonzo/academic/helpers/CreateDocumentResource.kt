@@ -1,13 +1,10 @@
 package com.simonedifonzo.academic.helpers
 
 import android.app.Activity
-import android.content.ContentResolver
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,9 +15,13 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.storage.StorageReference
+import com.simonedifonzo.academic.CourseActivity
 import com.simonedifonzo.academic.R
 import com.simonedifonzo.academic.classes.*
-import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -82,6 +83,9 @@ class CreateDocumentResource : AppCompatActivity() {
 
         if (data != null && resultCode == Activity.RESULT_OK && requestCode == 86) {
             resourceUri = data.data!!
+
+            btnSelectResource.isEnabled = false
+            btnSelectResource.isClickable = false
         } else {
             Toast.makeText(this, "Please select a file", Toast.LENGTH_SHORT).show()
         }
@@ -134,14 +138,40 @@ class CreateDocumentResource : AppCompatActivity() {
                 if (it.isSuccessful) {
                     resource.id = it.result?.id.toString()
 
-                    resourcesRef.document(resource.id).update("id", resource.id)
-                    resourcesRef.document(resource.id).update("name", resourceName.text.toString())
-                    resourcesRef.document(resource.id).update("description", resourceDescription.text.toString())
-                    resourcesRef.document(resource.id).update("type", "pdf")
-                    resourcesRef.document(resource.id).update("uploaderID", service.auth.uid.toString())
-                    resourcesRef.document(resource.id).update("uploadedTime", Utils.currentTimeStamp)
+                    GlobalScope.launch(Dispatchers.IO) {
+                        async {
+                            resourcesRef.document(resource.id).update("id", resource.id)
+                            resourcesRef.document(resource.id).update("name", resourceName.text.toString())
+                            resourcesRef.document(resource.id).update("description", resourceDescription.text.toString())
+                            resourcesRef.document(resource.id).update("type", "pdf")
+                            resourcesRef.document(resource.id).update("uploaderID", service.auth.uid.toString())
+                            resourcesRef.document(resource.id).update("uploadedTime", Utils.currentTimeStamp)
+                        }.join()
 
-                    uploadPdfToFirebase(resourceUri)
+                        async {
+                            uploadPdfToFirebase(resourceUri)
+                        }.join()
+                    }
+
+
+
+//                    resourcesRef.document(resource.id).update("id", resource.id)
+//                    resourcesRef.document(resource.id).update("name", resourceName.text.toString())
+//                    resourcesRef.document(resource.id).update("description", resourceDescription.text.toString())
+//                    resourcesRef.document(resource.id).update("type", "pdf")
+//                    resourcesRef.document(resource.id).update("uploaderID", service.auth.uid.toString())
+//                    resourcesRef.document(resource.id).update("uploadedTime", Utils.currentTimeStamp)
+//
+//                    uploadPdfToFirebase(resourceUri)
+
+                    val intent = Intent(this, CourseActivity::class.java)
+
+                    val bundle = Bundle()
+                    bundle.putSerializable("user", userData)
+                    bundle.putSerializable("course", course)
+                    intent.putExtras(bundle)
+
+                    startActivity(intent)
 
                     return@addOnCompleteListener
                 }
@@ -158,11 +188,13 @@ class CreateDocumentResource : AppCompatActivity() {
 
     private fun uploadPdfToFirebase(fileUri: Uri) {
 
-        val fileRef: StorageReference? = service.storage?.child("resources/" + resource.id + ".pdf")
+        val path = "resources/" + course.id + "/" + resource.id + "/" + resourceName.text.toString() + ".pdf"
+
+        val fileRef: StorageReference? = service.storage?.child(path)
 
         fileRef?.putFile(fileUri)?.addOnCompleteListener {
             if (it.isSuccessful) {
-                resourcesRef.document(resource.id).update("link", "resources/" + resource.id + ".pdf")
+                resourcesRef.document(resource.id).update("link", path)
             }
         }?.addOnFailureListener {
             Toast.makeText(this, "Image upload failed", Toast.LENGTH_SHORT).show()

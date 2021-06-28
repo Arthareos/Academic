@@ -16,7 +16,6 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.simonedifonzo.academic.classes.*
 import com.simonedifonzo.academic.helpers.ResourceTypeFragment
-import com.squareup.picasso.Picasso
 import java.util.*
 
 class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
@@ -112,8 +111,6 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
 
         if (clickedItem.type == "pdf") {
             var fileRef = service.storage?.child(clickedItem.link)
-
-//            Toast.makeText(this, clickedItem.link, Toast.LENGTH_SHORT).show()
 
             fileRef?.downloadUrl?.addOnSuccessListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.toString()))

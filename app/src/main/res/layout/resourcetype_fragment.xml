@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_document"
+        android:id="@+id/btn_pdf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -31,10 +31,10 @@
         android:gravity="center"
         android:padding="0dp"
 
-        android:text="Document" />
+        android:text="PDF" />
 
     <Button
-        android:id="@+id/btn_media"
+        android:id="@+id/btn_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -42,5 +42,5 @@
         android:gravity="center"
         android:padding="0dp"
 
-        android:text="Media" />
+        android:text="Online link" />
 </LinearLayout>

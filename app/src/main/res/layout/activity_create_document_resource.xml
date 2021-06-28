@@ -45,7 +45,7 @@
                 android:maxLines="2"
 
                 android:fontFamily="@font/roboto_slab"
-                android:text="Create new resource"
+                android:text="Create new PDF resource"
                 android:textColor="@color/kTitleTextColour"
 
                 android:textSize="24sp"
@@ -183,11 +183,26 @@
                     android:id="@+id/text_file"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
 
                     android:text="File not selected"
                     android:fontFamily="@font/roboto_slab"
                     android:visibility="gone"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Select resource"
+                    android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
@@ -204,7 +219,7 @@
 
                     android:background="@drawable/edit_text_box"
                     android:gravity="center"
-                    android:text="Select file" />
+                    android:text="Select PDF file" />
 
             </LinearLayout>
 

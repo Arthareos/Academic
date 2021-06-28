@@ -1,15 +1,11 @@
 package com.simonedifonzo.academic.helpers
 
 import android.content.Intent
-import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
 import com.simonedifonzo.academic.CourseActivity
@@ -97,11 +93,6 @@ class CreateMediaResource : AppCompatActivity() {
             resourcesRef.add(resource).addOnCompleteListener {
                 if (it.isSuccessful) {
                     resource.id = it.result?.id.toString()
-
-//                    resource.type = "web"
-//                    if (resourceLink.text.toString().contains("youtube.com") || resourceLink.text.toString().contains("youtu.be")) {
-//                        resource.type = "youtube"
-//                    }
 
                     resourcesRef.document(resource.id).update("id", resource.id)
                     resourcesRef.document(resource.id).update("name", resourceName.text.toString())
