@@ -153,17 +153,6 @@ class CreateDocumentResource : AppCompatActivity() {
                         }.join()
                     }
 
-
-
-//                    resourcesRef.document(resource.id).update("id", resource.id)
-//                    resourcesRef.document(resource.id).update("name", resourceName.text.toString())
-//                    resourcesRef.document(resource.id).update("description", resourceDescription.text.toString())
-//                    resourcesRef.document(resource.id).update("type", "pdf")
-//                    resourcesRef.document(resource.id).update("uploaderID", service.auth.uid.toString())
-//                    resourcesRef.document(resource.id).update("uploadedTime", Utils.currentTimeStamp)
-//
-//                    uploadPdfToFirebase(resourceUri)
-
                     val intent = Intent(this, CourseActivity::class.java)
 
                     val bundle = Bundle()

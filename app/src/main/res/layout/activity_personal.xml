@@ -115,6 +115,17 @@
                 android:text="@string/var_change_profile_picture" />
 
             <Button
+                android:id="@+id/btn_specialization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+
+                android:background="@drawable/edit_text_box"
+                android:gravity="center"
+                android:text="Change specialization" />
+
+            <Button
                 android:id="@+id/btn_verify"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -7,8 +7,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.simonedifonzo.academic.classes.GoogleService
+import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
 import com.simonedifonzo.academic.helpers.PhotoSourceFragment
+import com.simonedifonzo.academic.helpers.SelectSpecializationActivity
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
@@ -26,6 +28,7 @@ class PersonalActivity : AppCompatActivity() {
     private lateinit var txtEmail : TextView
 
     private lateinit var btnChangePic: Button
+    private lateinit var btnSpecialization:  Button
     private lateinit var btnVerify: Button
     private lateinit var btnLogoff: Button
 
@@ -54,17 +57,18 @@ class PersonalActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        mainLayout  = findViewById(R.id.main_layout)
-        btnBack     = findViewById(R.id.back_button)
+        mainLayout          = findViewById(R.id.main_layout)
+        btnBack             = findViewById(R.id.back_button)
 
-        picProfile  = findViewById(R.id.pic_profile)
-        picVerified = findViewById(R.id.verified_tick)
-        txtName     = findViewById(R.id.txt_name)
-        txtEmail    = findViewById(R.id.txt_email)
+        picProfile          = findViewById(R.id.pic_profile)
+        picVerified         = findViewById(R.id.verified_tick)
+        txtName             = findViewById(R.id.txt_name)
+        txtEmail            = findViewById(R.id.txt_email)
 
-        btnChangePic    = findViewById(R.id.btn_picture)
-        btnVerify       = findViewById(R.id.btn_verify)
-        btnLogoff       = findViewById(R.id.btn_logoff)
+        btnChangePic        = findViewById(R.id.btn_picture)
+        btnSpecialization   = findViewById(R.id.btn_specialization)
+        btnVerify           = findViewById(R.id.btn_verify)
+        btnLogoff           = findViewById(R.id.btn_logoff)
     }
 
     private fun initInfo() {
@@ -96,6 +100,16 @@ class PersonalActivity : AppCompatActivity() {
         photoSourceFragment = PhotoSourceFragment(userData = userData, service = service)
         btnChangePic.setOnClickListener {
             photoSourceFragment.show(supportFragmentManager, "photoSourceFragment")
+        }
+
+        btnSpecialization.setOnClickListener {
+            val intent = Intent(this@PersonalActivity, SelectSpecializationActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
         }
 
         btnVerify.setOnClickListener {

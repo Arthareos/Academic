@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
+import com.simonedifonzo.academic.helpers.SelectSpecializationActivity
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.*
@@ -105,10 +106,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         cardCourse.setOnClickListener {
-            if (userData.specialization == Specialization()) {
-                Snackbar.make(mainLayout, "You don't have any specialization selected yet", Snackbar.LENGTH_LONG)
-                    .setAction("Add specialization") {
-                        // TODO: Add implementation
+            if (userData.specialization.university == "null") {
+                Snackbar.make(mainLayout, "You don't have a specialization selected", Snackbar.LENGTH_LONG)
+                    .setAction("Select") {
+                        val intent = Intent(this@MainActivity, SelectSpecializationActivity::class.java)
+
+                        val bundle = Bundle()
+                        bundle.putSerializable("user", userData)
+                        intent.putExtras(bundle)
+
+                        startActivity(intent)
                     }.show()
 
                 return@setOnClickListener
@@ -124,10 +131,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         cardAcademic.setOnClickListener {
-            if (userData.specialization == Specialization()) {
-                Snackbar.make(mainLayout, "You don't have any specialization selected yet", Snackbar.LENGTH_LONG)
-                    .setAction("Add specialization") {
-                        // TODO: Add implementation
+            if (userData.specialization.university == "null") {
+                Snackbar.make(mainLayout, "You don't have a specialization selected", Snackbar.LENGTH_LONG)
+                    .setAction("Select") {
+                        val intent = Intent(this@MainActivity, SelectSpecializationActivity::class.java)
+
+                        val bundle = Bundle()
+                        bundle.putSerializable("user", userData)
+                        intent.putExtras(bundle)
+
+                        startActivity(intent)
                     }.show()
 
                 return@setOnClickListener

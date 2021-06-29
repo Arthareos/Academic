@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Academic">
-        <activity android:name=".helpers.CreateMediaResource"></activity>
+        <activity android:name=".helpers.SelectSpecializationActivity"></activity>
+        <activity android:name=".helpers.CreateMediaResource" />
         <activity android:name=".helpers.CreateDocumentResource" />
         <activity android:name=".AcademicWorkBrowserActivity" />
         <activity android:name=".CourseActivity" />
