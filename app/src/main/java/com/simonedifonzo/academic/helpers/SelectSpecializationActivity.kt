@@ -35,6 +35,7 @@ class SelectSpecializationActivity : AppCompatActivity() {
     private var yearsNameList: MutableList<String> = mutableListOf()
 
     private lateinit var btnAdd : FloatingActionButton
+    private lateinit var btnBack : ImageView
     private lateinit var universitySpinner: Spinner
     private lateinit var facultySpinner: Spinner
     private lateinit var yearSpinner: Spinner
@@ -55,6 +56,7 @@ class SelectSpecializationActivity : AppCompatActivity() {
 
     private fun initViews() {
         btnAdd              = findViewById(R.id.button_create)
+        btnBack             = findViewById(R.id.back_button)
 
         universitySpinner   = findViewById(R.id.text_university)
         facultySpinner      = findViewById(R.id.text_faculty)
@@ -62,6 +64,10 @@ class SelectSpecializationActivity : AppCompatActivity() {
     }
 
     private fun initInfo () {
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
         facultySpinner.isEnabled    = false
         facultySpinner.isClickable  = false
         yearSpinner.isEnabled       = false

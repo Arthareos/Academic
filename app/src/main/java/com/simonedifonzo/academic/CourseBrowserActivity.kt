@@ -17,6 +17,7 @@ import com.simonedifonzo.academic.classes.Course
 import com.simonedifonzo.academic.classes.CourseAdapter
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
+import com.simonedifonzo.academic.helpers.CreateCourseActivity
 import java.util.*
 
 class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener {
@@ -75,6 +76,16 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
 
         if (userData.rank == "user") {
             btnAdd.visibility = View.GONE
+        }
+
+        btnAdd.setOnClickListener {
+            val intent = Intent(this@CourseBrowserActivity, CreateCourseActivity::class.java)
+
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
+
+            startActivity(intent)
         }
 
         val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING).whereNotEqualTo("name", "null")

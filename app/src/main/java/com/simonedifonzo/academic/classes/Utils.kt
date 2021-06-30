@@ -10,4 +10,14 @@ object Utils {
             val now = Date()
             return sdfDate.format(now)
         }
+
+    fun transformToArabic(romanNumeral: String) : String {
+
+        when (romanNumeral) {
+            "I" -> return "1"
+            "II" -> return "2"
+        }
+
+        return "invalid number"
+    }
 }

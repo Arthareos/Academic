@@ -104,12 +104,14 @@ class LauncherActivity : AppCompatActivity() {
                         document.getString("specialization").toString())
                 }
 
-                userData.starredCourses.clear()
+                if (userData.rank == "admin") {
+                    userData.starredCourses.clear()
 
-                val data     = document.get("starredCourses").toString()
-                val array    = data.subSequence(1, data.length - 1).split(", ")
-                for (course in array) {
-                    userData.starredCourses.add(Course.generateCourse(service, course))
+                    val data     = document.get("starredCourses").toString()
+                    val array    = data.subSequence(1, data.length - 1).split(", ")
+                    for (course in array) {
+                        userData.starredCourses.add(Course.generateCourse(service, course))
+                    }
                 }
             }
         }.await()

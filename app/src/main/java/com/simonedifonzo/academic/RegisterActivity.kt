@@ -145,16 +145,19 @@ class RegisterActivity : AppCompatActivity() {
                 userData.profilePic = document.getString("profilePic").toString()
                 userData.lastChange = document.getString("lastChange").toString()
 
-                userData.specialization = Specialization.createSpecialization(
-                    document.getString("specialization").toString()
-                )
+                if(document.getString("specialization").toString() != "null") {
+                    userData.specialization = Specialization.createSpecialization(
+                        document.getString("specialization").toString())
+                }
 
-                userData.starredCourses.clear()
+                if (userData.rank == "admin") {
+                    userData.starredCourses.clear()
 
-                val data     = document.get("starredCourses").toString()
-                val array    = data.subSequence(1, data.length - 1).split(", ")
-                for (course in array) {
-                    userData.starredCourses.add(Course.generateCourse(service, course))
+                    val data     = document.get("starredCourses").toString()
+                    val array    = data.subSequence(1, data.length - 1).split(", ")
+                    for (course in array) {
+                        userData.starredCourses.add(Course.generateCourse(service, course))
+                    }
                 }
             }
         }.await()

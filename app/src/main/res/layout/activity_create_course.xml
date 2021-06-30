@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".CourseActivity"
     android:background="@drawable/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/main_layout">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create"
@@ -45,13 +47,34 @@
                 android:maxLines="2"
 
                 android:fontFamily="@font/roboto_slab"
-                android:text="Select specialization"
+                android:text="Create new course"
                 android:textColor="@color/kTitleTextColour"
 
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/back_button"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/header_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header_title"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+
+                android:ellipsize="end"
+                android:maxLines="1"
+
+                android:fontFamily="@font/roboto_slab"
+                android:text="Course path"
+                android:textColor="@color/kTitleTextColour"
+                android:textSize="16sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/header_title"
+                app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
             <ImageView
                 android:id="@+id/back_button"
@@ -86,7 +109,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Specialization details:"
+                    android:text="Course details:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -101,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="University name"
+                    android:text="Course name:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -111,21 +134,28 @@
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
 
-                <Spinner
-                    android:id="@+id/text_university"
+                <EditText
+                    android:id="@+id/text_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:hint="Course name"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Faculty name"
+                    android:text="Course professor:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -135,21 +165,59 @@
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
 
-                <Spinner
-                    android:id="@+id/text_faculty"
+                <EditText
+                    android:id="@+id/text_professor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:hint="Professor name"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Year of study"
+                    android:text="Course ID:"
+                    android:fontFamily="@font/roboto_slab"
+
+                    android:ellipsize="end"
+                    android:scrollHorizontally="true"
+                    android:maxLines="2"
+
+                    android:textColor="@color/kTitleTextColour"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/text_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="8dp"
+
+                    android:background="@drawable/edit_text_box"
+                    android:hint="ID: ex. IT11"
+                    android:textColorHint="@color/kSubtextColour"
+                    android:textColor="@color/kTextColour"
+                    android:fontFamily="@font/roboto_slab"
+                    android:textSize="16sp"
+
+                    android:inputType="textAutoComplete" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="Course semester:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -160,7 +228,7 @@
                     android:textSize="16sp" />
 
                 <Spinner
-                    android:id="@+id/text_year"
+                    android:id="@+id/text_semester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown"
@@ -169,7 +237,6 @@
                     android:layout_marginBottom="16dp" />
 
             </LinearLayout>
-
         </ScrollView>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

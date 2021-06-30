@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
 //                doAnotherThing()
 //            }
 //        }
-
     }
 
     private fun initViews() {
