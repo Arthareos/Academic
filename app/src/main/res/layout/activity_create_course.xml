@@ -2,13 +2,13 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
-    tools:context=".helpers.CreateCourseActivity"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    android:id="@+id/main_layout">
+    tools:context=".helpers.CreateCourseActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:layout_marginEnd="16dp"
 
                 android:ellipsize="end"
-                android:maxLines="2"
-
                 android:fontFamily="@font/roboto_slab"
+
+                android:maxLines="2"
                 android:text="Create new course"
                 android:textColor="@color/kTitleTextColour"
 
@@ -65,9 +65,9 @@
                 android:layout_marginEnd="16dp"
 
                 android:ellipsize="end"
-                android:maxLines="1"
-
                 android:fontFamily="@font/roboto_slab"
+
+                android:maxLines="1"
                 android:text="Course path"
                 android:textColor="@color/kTitleTextColour"
                 android:textSize="16sp"
@@ -109,12 +109,12 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Course details:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Course details:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="24sp" />
@@ -124,12 +124,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Course name:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Course name:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -142,25 +142,25 @@
                     android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Course name"
-                    android:textColorHint="@color/kSubtextColour"
-                    android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
-                    android:textSize="16sp"
+                    android:hint="Course name"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/kTextColour"
+                    android:textColorHint="@color/kSubtextColour"
 
-                    android:inputType="textAutoComplete" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Course professor:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Course professor:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -173,25 +173,25 @@
                     android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Professor name"
-                    android:textColorHint="@color/kSubtextColour"
-                    android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
-                    android:textSize="16sp"
+                    android:hint="Professor name"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/kTextColour"
+                    android:textColorHint="@color/kSubtextColour"
 
-                    android:inputType="textAutoComplete" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Course ID:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Course ID:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -204,25 +204,25 @@
                     android:layout_marginBottom="8dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="ID: ex. IT11"
-                    android:textColorHint="@color/kSubtextColour"
-                    android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
-                    android:textSize="16sp"
+                    android:hint="ID: ex. IT11"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/kTextColour"
+                    android:textColorHint="@color/kSubtextColour"
 
-                    android:inputType="textAutoComplete" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Course semester:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Course semester:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -231,10 +231,10 @@
                     android:id="@+id/text_semester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:spinnerMode="dropdown" />
 
             </LinearLayout>
         </ScrollView>

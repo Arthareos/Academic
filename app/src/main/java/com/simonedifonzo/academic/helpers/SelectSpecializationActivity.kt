@@ -31,8 +31,8 @@ class SelectSpecializationActivity : AppCompatActivity() {
     private var yearsIdList: MutableList<String> = mutableListOf()
     private var yearsNameList: MutableList<String> = mutableListOf()
 
-    private lateinit var btnAdd : FloatingActionButton
-    private lateinit var btnBack : ImageView
+    private lateinit var btnAdd: FloatingActionButton
+    private lateinit var btnBack: ImageView
     private lateinit var universitySpinner: Spinner
     private lateinit var facultySpinner: Spinner
     private lateinit var yearSpinner: Spinner
@@ -44,7 +44,7 @@ class SelectSpecializationActivity : AppCompatActivity() {
 
         initViews()
 
-        userData    = intent.getSerializableExtra("user") as User
+        userData = intent.getSerializableExtra("user") as User
 
         universitiesRef = service.firestore.collection("universities")
 
@@ -52,28 +52,33 @@ class SelectSpecializationActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        btnAdd              = findViewById(R.id.button_create)
-        btnBack             = findViewById(R.id.back_button)
+        btnAdd = findViewById(R.id.button_create)
+        btnBack = findViewById(R.id.back_button)
 
-        universitySpinner   = findViewById(R.id.text_university)
-        facultySpinner      = findViewById(R.id.text_faculty)
-        yearSpinner         = findViewById(R.id.text_year)
+        universitySpinner = findViewById(R.id.text_university)
+        facultySpinner = findViewById(R.id.text_faculty)
+        yearSpinner = findViewById(R.id.text_year)
     }
 
-    private fun initInfo () {
+    private fun initInfo() {
         btnBack.setOnClickListener {
             onBackPressed()
         }
 
-        facultySpinner.isEnabled    = false
-        facultySpinner.isClickable  = false
-        yearSpinner.isEnabled       = false
-        yearSpinner.isClickable     = false
+        facultySpinner.isEnabled = false
+        facultySpinner.isClickable = false
+        yearSpinner.isEnabled = false
+        yearSpinner.isClickable = false
 
         feedUniversities()
 
         universitySpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 universitySpinner.setSelection(position)
 
                 facultiesIdList.clear()
@@ -88,7 +93,12 @@ class SelectSpecializationActivity : AppCompatActivity() {
         }
 
         facultySpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 facultySpinner.setSelection(position)
                 feedYears(facultiesIdList[position])
             }
@@ -97,7 +107,12 @@ class SelectSpecializationActivity : AppCompatActivity() {
         }
 
         yearSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 yearSpinner.setSelection(position)
             }
 
@@ -107,10 +122,12 @@ class SelectSpecializationActivity : AppCompatActivity() {
         btnAdd.setOnClickListener {
             service.firestore.collection("users")
                 .document(service.auth.uid.toString())
-                .update("specialization",
+                .update(
+                    "specialization",
                     universitiesIdList[universitySpinner.selectedItemPosition]
                             + " " + facultiesIdList[facultySpinner.selectedItemPosition]
-                            + " " + yearsIdList[yearSpinner.selectedItemPosition])
+                            + " " + yearsIdList[yearSpinner.selectedItemPosition]
+                )
 
             val intent = Intent(this@SelectSpecializationActivity, LauncherActivity::class.java)
             startActivity(intent)
@@ -153,8 +170,8 @@ class SelectSpecializationActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        facultySpinner.isEnabled    = true
-        facultySpinner.isClickable  = true
+        facultySpinner.isEnabled = true
+        facultySpinner.isClickable = true
     }
 
     private fun feedYears(faculty: String) {
@@ -169,10 +186,10 @@ class SelectSpecializationActivity : AppCompatActivity() {
 
             val document = it.result
             if (it.isSuccessful && document != null) {
-                val data     = document.get("bachelor").toString()
+                val data = document.get("bachelor").toString()
 
                 if (data != "null") {
-                    val array    = data.subSequence(1, data.length - 1).split(", ")
+                    val array = data.subSequence(1, data.length - 1).split(", ")
 
                     for (year in array) {
                         var yearName = ""
@@ -191,7 +208,7 @@ class SelectSpecializationActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        yearSpinner.isEnabled    = true
-        yearSpinner.isClickable  = true
+        yearSpinner.isEnabled = true
+        yearSpinner.isClickable = true
     }
 }

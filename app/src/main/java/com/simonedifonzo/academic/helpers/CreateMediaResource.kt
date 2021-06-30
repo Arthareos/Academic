@@ -22,7 +22,7 @@ class CreateMediaResource : AppCompatActivity() {
 
     private lateinit var resourcesRef: CollectionReference
 
-    private lateinit var btnAdd : FloatingActionButton
+    private lateinit var btnAdd: FloatingActionButton
     private lateinit var btnBack: ImageView
     private lateinit var txtHeader: TextView
     private lateinit var txtSubtitle: TextView
@@ -40,8 +40,8 @@ class CreateMediaResource : AppCompatActivity() {
 
         initViews()
 
-        userData    = intent.getSerializableExtra("user") as User
-        course      = intent.getSerializableExtra("course") as Course
+        userData = intent.getSerializableExtra("user") as User
+        course = intent.getSerializableExtra("course") as Course
 
         resourcesRef = service.firestore.collection("universities")
             .document(userData.specialization.university)
@@ -55,18 +55,18 @@ class CreateMediaResource : AppCompatActivity() {
     }
 
     private fun initViews() {
-        btnBack             = findViewById(R.id.back_button)
-        txtHeader           = findViewById(R.id.header_title)
-        txtSubtitle         = findViewById(R.id.header_subtitle)
-        txtActions          = findViewById(R.id.txt_actions)
-        btnAdd              = findViewById(R.id.button_create)
+        btnBack = findViewById(R.id.back_button)
+        txtHeader = findViewById(R.id.header_title)
+        txtSubtitle = findViewById(R.id.header_subtitle)
+        txtActions = findViewById(R.id.txt_actions)
+        btnAdd = findViewById(R.id.button_create)
 
-        resourceName        = findViewById(R.id.text_name)
+        resourceName = findViewById(R.id.text_name)
         resourceDescription = findViewById(R.id.text_description)
-        resourceLink        = findViewById(R.id.text_link)
+        resourceLink = findViewById(R.id.text_link)
     }
 
-    private fun initInfo () {
+    private fun initInfo() {
         btnBack.setOnClickListener {
             onBackPressed()
         }
@@ -96,11 +96,14 @@ class CreateMediaResource : AppCompatActivity() {
 
                     resourcesRef.document(resource.id).update("id", resource.id)
                     resourcesRef.document(resource.id).update("name", resourceName.text.toString())
-                    resourcesRef.document(resource.id).update("description", resourceDescription.text.toString())
+                    resourcesRef.document(resource.id)
+                        .update("description", resourceDescription.text.toString())
                     resourcesRef.document(resource.id).update("type", "web")
                     resourcesRef.document(resource.id).update("link", resourceLink.text.toString())
-                    resourcesRef.document(resource.id).update("uploaderID", service.auth.uid.toString())
-                    resourcesRef.document(resource.id).update("uploadedTime", Utils.currentTimeStamp)
+                    resourcesRef.document(resource.id)
+                        .update("uploaderID", service.auth.uid.toString())
+                    resourcesRef.document(resource.id)
+                        .update("uploadedTime", Utils.currentTimeStamp)
 
                     val intent = Intent(this, CourseActivity::class.java)
 

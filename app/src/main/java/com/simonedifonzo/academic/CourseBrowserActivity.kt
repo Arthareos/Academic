@@ -28,12 +28,12 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
     private lateinit var coursesRef: CollectionReference
     private lateinit var adapter: CourseAdapter
 
-    private lateinit var mainLayout : LinearLayout
-    private lateinit var btnBack : ImageView
+    private lateinit var mainLayout: LinearLayout
+    private lateinit var btnBack: ImageView
 
-    private lateinit var txtPath : TextView
-    private lateinit var recyclerCourses : RecyclerView
-    private lateinit var btnAdd : FloatingActionButton
+    private lateinit var txtPath: TextView
+    private lateinit var recyclerCourses: RecyclerView
+    private lateinit var btnAdd: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +54,12 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
     }
 
     private fun initViews() {
-        mainLayout      = findViewById(R.id.main_layout)
-        btnBack         = findViewById(R.id.back_button)
-        txtPath         = findViewById(R.id.txt_path)
+        mainLayout = findViewById(R.id.main_layout)
+        btnBack = findViewById(R.id.back_button)
+        txtPath = findViewById(R.id.txt_path)
 
         recyclerCourses = findViewById(R.id.recycler_view)
-        btnAdd          = findViewById(R.id.button_add)
+        btnAdd = findViewById(R.id.button_add)
     }
 
     private fun initInfo() {
@@ -88,7 +88,8 @@ class CourseBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener
             startActivity(intent)
         }
 
-        val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING).whereNotEqualTo("name", "null")
+        val query: Query =
+            coursesRef.orderBy("name", Query.Direction.ASCENDING).whereNotEqualTo("name", "null")
 
         val options: FirestoreRecyclerOptions<Course> = FirestoreRecyclerOptions.Builder<Course>()
             .setQuery(query, Course::class.java)

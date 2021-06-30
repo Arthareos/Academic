@@ -12,11 +12,15 @@ import com.simonedifonzo.academic.classes.Course
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.User
 
-class ResourceTypeFragment(private var service: GoogleService, private var userData: User, private var course: Course) :
+class ResourceTypeFragment(
+    private var service: GoogleService,
+    private var userData: User,
+    private var course: Course
+) :
     BottomSheetDialogFragment() {
 
-    private lateinit var btnPdf : Button
-    private lateinit var btnLink : Button
+    private lateinit var btnPdf: Button
+    private lateinit var btnLink: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
 
     android:padding="16dp">
 
@@ -14,9 +14,9 @@
 
         android:fontFamily="@font/roboto_slab"
         android:text="Select resource type:"
+        android:textAlignment="center"
         android:textColor="@color/kTitleTextColour"
         android:textSize="24sp"
-        android:textAlignment="center"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

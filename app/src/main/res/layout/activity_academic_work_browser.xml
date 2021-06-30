@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcademicWorkBrowserActivity"
 
     android:background="@drawable/background"
     android:orientation="vertical"
-    android:id="@+id/main_layout">
+    tools:context=".AcademicWorkBrowserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -31,9 +31,9 @@
             android:layout_marginEnd="16dp"
 
             android:ellipsize="end"
-            android:maxLines="2"
-
             android:fontFamily="@font/roboto_slab"
+
+            android:maxLines="2"
             android:text="Available works:"
             android:textColor="@color/kTitleTextColour"
 
@@ -52,9 +52,9 @@
             android:layout_marginEnd="16dp"
 
             android:ellipsize="end"
-            android:maxLines="1"
-
             android:fontFamily="@font/roboto_slab"
+
+            android:maxLines="1"
             android:text="University // Faculty // Year"
             android:textColor="@color/kTitleTextColour"
             android:textSize="16sp"
@@ -83,7 +83,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_add"
@@ -91,6 +91,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_add"/>
+            android:src="@drawable/ic_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

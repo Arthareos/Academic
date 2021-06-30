@@ -11,7 +11,7 @@ object Utils {
             return sdfDate.format(now)
         }
 
-    fun transformToArabic(romanNumeral: String) : String {
+    fun transformToArabic(romanNumeral: String): String {
 
         when (romanNumeral) {
             "I" -> return "1"

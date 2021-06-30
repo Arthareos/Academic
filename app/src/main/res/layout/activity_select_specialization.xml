@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".helpers.SelectSpecializationActivity"
     android:background="@drawable/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".helpers.SelectSpecializationActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,9 +42,9 @@
                 android:layout_marginEnd="16dp"
 
                 android:ellipsize="end"
-                android:maxLines="2"
-
                 android:fontFamily="@font/roboto_slab"
+
+                android:maxLines="2"
                 android:text="Select specialization"
                 android:textColor="@color/kTitleTextColour"
 
@@ -86,12 +86,12 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Specialization details:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Specialization details:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="24sp" />
@@ -101,12 +101,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="University name"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="University name"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -115,22 +115,22 @@
                     android:id="@+id/text_university"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Faculty name"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Faculty name"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -139,22 +139,22 @@
                     android:id="@+id/text_faculty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Year of study"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Year of study"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -163,10 +163,10 @@
                     android:id="@+id/text_year"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:spinnerMode="dropdown" />
 
             </LinearLayout>
 

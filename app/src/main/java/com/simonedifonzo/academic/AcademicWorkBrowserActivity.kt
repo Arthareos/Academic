@@ -28,12 +28,12 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), AcademicWorkAdapter.OnC
     private lateinit var coursesRef: CollectionReference
     private lateinit var adapter: AcademicWorkAdapter
 
-    private lateinit var mainLayout : LinearLayout
-    private lateinit var btnBack : ImageView
+    private lateinit var mainLayout: LinearLayout
+    private lateinit var btnBack: ImageView
 
-    private lateinit var txtPath : TextView
-    private lateinit var recyclerWorks : RecyclerView
-    private lateinit var btnAdd : FloatingActionButton
+    private lateinit var txtPath: TextView
+    private lateinit var recyclerWorks: RecyclerView
+    private lateinit var btnAdd: FloatingActionButton
 
     private lateinit var resourceTypeFragment: ResourceTypeFragment
 
@@ -56,12 +56,12 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), AcademicWorkAdapter.OnC
     }
 
     private fun initViews() {
-        mainLayout      = findViewById(R.id.main_layout)
-        btnBack         = findViewById(R.id.back_button)
-        txtPath         = findViewById(R.id.txt_path)
+        mainLayout = findViewById(R.id.main_layout)
+        btnBack = findViewById(R.id.back_button)
+        txtPath = findViewById(R.id.txt_path)
 
-        recyclerWorks   = findViewById(R.id.recycler_view)
-        btnAdd          = findViewById(R.id.button_add)
+        recyclerWorks = findViewById(R.id.recycler_view)
+        btnAdd = findViewById(R.id.button_add)
     }
 
     private fun initInfo() {
@@ -93,9 +93,10 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), AcademicWorkAdapter.OnC
 
         val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING)
 
-        val options: FirestoreRecyclerOptions<AcademicWork> = FirestoreRecyclerOptions.Builder<AcademicWork>()
-            .setQuery(query, AcademicWork::class.java)
-            .build()
+        val options: FirestoreRecyclerOptions<AcademicWork> =
+            FirestoreRecyclerOptions.Builder<AcademicWork>()
+                .setQuery(query, AcademicWork::class.java)
+                .build()
 
         adapter = AcademicWorkAdapter(options, this)
 

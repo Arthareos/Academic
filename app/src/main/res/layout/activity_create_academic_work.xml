@@ -2,13 +2,13 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
-    tools:context=".helpers.CreateAcademicWorkActivity"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    android:id="@+id/main_layout">
+    tools:context=".helpers.CreateAcademicWorkActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:layout_marginEnd="16dp"
 
                 android:ellipsize="end"
-                android:maxLines="2"
-
                 android:fontFamily="@font/roboto_slab"
+
+                android:maxLines="2"
                 android:text="Add new AcademicWork"
                 android:textColor="@color/kTitleTextColour"
 
@@ -65,9 +65,9 @@
                 android:layout_marginEnd="16dp"
 
                 android:ellipsize="end"
-                android:maxLines="1"
-
                 android:fontFamily="@font/roboto_slab"
+
+                android:maxLines="1"
                 android:text="Path"
                 android:textColor="@color/kTitleTextColour"
                 android:textSize="16sp"
@@ -109,12 +109,12 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Work details:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Work details:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="24sp" />
@@ -124,12 +124,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Work name:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Work name:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -142,25 +142,25 @@
                     android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Work name"
-                    android:textColorHint="@color/kSubtextColour"
-                    android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
-                    android:textSize="16sp"
+                    android:hint="Work name"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/kTextColour"
+                    android:textColorHint="@color/kSubtextColour"
 
-                    android:inputType="textAutoComplete" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Work author:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Work author:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -173,25 +173,25 @@
                     android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Author name"
-                    android:textColorHint="@color/kSubtextColour"
-                    android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
-                    android:textSize="16sp"
+                    android:hint="Author name"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/kTextColour"
+                    android:textColorHint="@color/kSubtextColour"
 
-                    android:inputType="textAutoComplete" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Work type:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="Work type:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -200,22 +200,22 @@
                     android:id="@+id/text_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:layout_marginBottom="16dp" />
+                    android:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="File select:"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_slab"
 
-                    android:ellipsize="end"
-                    android:scrollHorizontally="true"
                     android:maxLines="2"
+                    android:scrollHorizontally="true"
+                    android:text="File select:"
 
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
@@ -224,10 +224,10 @@
                     android:id="@+id/btn_selectresource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-
                     android:background="@drawable/edit_text_box"
+
                     android:gravity="center"
+                    android:padding="16dp"
                     android:text="Select PDF file" />
 
             </LinearLayout>

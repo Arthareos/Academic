@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
     android:id="@+id/main_layout"
-    tools:context=".PersonalActivity"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".PersonalActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -108,10 +108,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="16dp"
-
                 android:background="@drawable/edit_text_box"
+
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="@string/var_change_profile_picture" />
 
             <Button
@@ -119,10 +119,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="16dp"
-
                 android:background="@drawable/edit_text_box"
+
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="Change specialization" />
 
             <Button
@@ -130,10 +130,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="16dp"
-
                 android:background="@drawable/edit_text_box"
+
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="@string/var_verify_account" />
 
             <Button
@@ -141,10 +141,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="16dp"
-
                 android:background="@drawable/edit_text_box"
+
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="@string/var_log_off" />
         </LinearLayout>
     </ScrollView>

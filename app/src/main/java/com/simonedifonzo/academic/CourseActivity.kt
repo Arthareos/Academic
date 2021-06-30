@@ -20,15 +20,15 @@ import java.util.*
 
 class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
 
-    private var service: GoogleService  = GoogleService()
-    private var userData: User          = User()
-    private var course: Course          = Course()
+    private var service: GoogleService = GoogleService()
+    private var userData: User = User()
+    private var course: Course = Course()
 
     private lateinit var resourceRef: CollectionReference
     private lateinit var adapter: ResourceAdapter
 
-    private lateinit var recyclerResource : RecyclerView
-    private lateinit var btnAdd : FloatingActionButton
+    private lateinit var recyclerResource: RecyclerView
+    private lateinit var btnAdd: FloatingActionButton
 
     private lateinit var btnBack: ImageView
     private lateinit var txtName: TextView
@@ -44,8 +44,8 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
 
         initViews()
 
-        userData    = intent.getSerializableExtra("user") as User
-        course      = intent.getSerializableExtra("course") as Course
+        userData = intent.getSerializableExtra("user") as User
+        course = intent.getSerializableExtra("course") as Course
 
         resourceRef = service.firestore.collection("universities")
             .document(userData.specialization.university)
@@ -59,13 +59,13 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
     }
 
     private fun initViews() {
-        btnBack             = findViewById(R.id.back_button)
-        txtName             = findViewById(R.id.course_name)
-        txtProfessor        = findViewById(R.id.course_professor)
-        txtActions          = findViewById(R.id.txt_actions)
+        btnBack = findViewById(R.id.back_button)
+        txtName = findViewById(R.id.course_name)
+        txtProfessor = findViewById(R.id.course_professor)
+        txtActions = findViewById(R.id.txt_actions)
 
-        recyclerResource    = findViewById(R.id.recycler_view)
-        btnAdd              = findViewById(R.id.button_add)
+        recyclerResource = findViewById(R.id.recycler_view)
+        btnAdd = findViewById(R.id.button_add)
     }
 
     private fun initInfo() {
@@ -74,23 +74,25 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
             onBackPressed()
         }
 
-        txtName.text        = course.name
-        txtProfessor.text   = course.professor
+        txtName.text = course.name
+        txtProfessor.text = course.professor
 
         if (userData.rank == "user") {
             btnAdd.visibility = View.GONE
         }
 
-        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service, course = course)
+        resourceTypeFragment =
+            ResourceTypeFragment(userData = userData, service = service, course = course)
         btnAdd.setOnClickListener {
             resourceTypeFragment.show(supportFragmentManager, "resourceTypeFragment")
         }
 
         val query: Query = resourceRef.orderBy("name", Query.Direction.ASCENDING)
 
-        val options: FirestoreRecyclerOptions<Resource> = FirestoreRecyclerOptions.Builder<Resource>()
-            .setQuery(query, Resource::class.java)
-            .build()
+        val options: FirestoreRecyclerOptions<Resource> =
+            FirestoreRecyclerOptions.Builder<Resource>()
+                .setQuery(query, Resource::class.java)
+                .build()
 
         adapter = ResourceAdapter(options, this)
 

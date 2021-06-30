@@ -25,12 +25,13 @@ public class CourseAdapter(
     }
 
     protected override fun onBindViewHolder(holder: CourseHolder, position: Int, model: Course) {
-        holder.tvTitle.text         = model.name
-        holder.tvDescription.text   = model.professor
-        holder.tvCode.text          = model.id
+        holder.tvTitle.text = model.name
+        holder.tvDescription.text = model.professor
+        holder.tvCode.text = model.id
     }
 
-    inner class CourseHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class CourseHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         var tvTitle: TextView = itemView.findViewById(R.id.text_view_title)
         var tvDescription: TextView = itemView.findViewById(R.id.text_view_description)
         var tvCode: TextView = itemView.findViewById(R.id.text_view_code)

@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:layout_marginTop="8dp"
     android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
 
-    android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
 
-    app:cardElevation="32dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="32dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,11 +28,11 @@
             android:layout_marginEnd="8dp"
 
             android:ellipsize="end"
-            android:textSize="20sp"
+            android:fontFamily="@font/roboto_slab"
             android:maxLines="1"
             android:text="Title"
-            android:fontFamily="@font/roboto_slab"
             android:textColor="@color/kTitleTextColour"
+            android:textSize="20sp"
 
             app:layout_constraintEnd_toStartOf="@+id/text_view_type"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,11 +46,11 @@
             android:layout_alignParentEnd="true"
 
             android:ellipsize="end"
-            android:textSize="20sp"
+            android:fontFamily="@font/roboto_slab"
             android:maxLines="1"
             android:text="Type"
-            android:fontFamily="@font/roboto_slab"
             android:textColor="@color/kTitleTextColour"
+            android:textSize="20sp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

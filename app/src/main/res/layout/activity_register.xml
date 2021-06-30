@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +19,11 @@
             android:layout_margin="16dp"
             android:background="@drawable/card_light"
 
-            android:padding="16dp"
             android:elevation="64dp"
-
             android:gravity="center"
-            android:orientation="vertical">
+
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/title"
@@ -54,7 +54,6 @@
                 android:textColorHint="@color/kSubtextColour"
 
                 android:textSize="16sp" />
-
 
 
             <EditText
@@ -114,39 +113,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
 
-                android:layout_marginTop="16dp">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_back"
 
-                    android:text="@string/var_back"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
-
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
+                    android:layout_weight="1"
 
                     android:background="@drawable/edit_text_box"
 
-                    android:gravity="center"/>
+                    android:gravity="center"
+
+                    android:text="@string/var_back" />
 
                 <Button
                     android:id="@+id/btn_register"
 
-                    android:text="@string/var_register"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
-
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
 
                     android:background="@drawable/edit_text_box"
 
-                    android:gravity="center"/>
+                    android:gravity="center"
+
+                    android:text="@string/var_register" />
             </LinearLayout>
 
         </LinearLayout>

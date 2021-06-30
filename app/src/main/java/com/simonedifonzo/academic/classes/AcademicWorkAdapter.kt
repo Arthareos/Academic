@@ -9,7 +9,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.simonedifonzo.academic.R
 
-public class AcademicWorkAdapter(private val options: FirestoreRecyclerOptions<AcademicWork>, private val listener: OnClickListener) :
+public class AcademicWorkAdapter(
+    private val options: FirestoreRecyclerOptions<AcademicWork>,
+    private val listener: OnClickListener
+) :
     FirestoreRecyclerAdapter<AcademicWork, AcademicWorkAdapter.WorkHolder>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkHolder {
@@ -21,16 +24,21 @@ public class AcademicWorkAdapter(private val options: FirestoreRecyclerOptions<A
         return WorkHolder(v)
     }
 
-    protected override fun onBindViewHolder(holder: WorkHolder, position: Int, model: AcademicWork) {
-        holder.tvTitle.text         = model.name
-        holder.tvDescription.text   = model.author
-        holder.tvCode.text          = model.type
+    protected override fun onBindViewHolder(
+        holder: WorkHolder,
+        position: Int,
+        model: AcademicWork
+    ) {
+        holder.tvTitle.text = model.name
+        holder.tvDescription.text = model.author
+        holder.tvCode.text = model.type
     }
 
-    inner class WorkHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var tvTitle         : TextView = itemView.findViewById(R.id.text_view_title)
-        var tvDescription   : TextView = itemView.findViewById(R.id.text_view_description)
-        var tvCode          : TextView = itemView.findViewById(R.id.text_view_type)
+    inner class WorkHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        var tvTitle: TextView = itemView.findViewById(R.id.text_view_title)
+        var tvDescription: TextView = itemView.findViewById(R.id.text_view_description)
+        var tvCode: TextView = itemView.findViewById(R.id.text_view_type)
 
         init {
             itemView.setOnClickListener(this)

@@ -6,10 +6,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import java.io.Serializable
 
 class Course : Serializable {
-    var id          = "null"
-    var name        = "null"
-    var professor   = "null"
-    var semester    = "null"
+    var id = "null"
+    var name = "null"
+    var professor = "null"
+    var semester = "null"
 
     companion object {
         fun generateCourse(service: GoogleService, courseCode: String): Course {
@@ -28,10 +28,10 @@ class Course : Serializable {
             documentReference.get().addOnCompleteListener { task: Task<DocumentSnapshot?> ->
                 val document = task.result
                 if (task.isSuccessful && document != null) {
-                    course.id           = result[3]
-                    course.name         = document.getString("name").toString()
-                    course.professor    = document.getString("professor").toString()
-                    course.semester     = document.getString("semester").toString()
+                    course.id = result[3]
+                    course.name = document.getString("name").toString()
+                    course.professor = document.getString("professor").toString()
+                    course.semester = document.getString("semester").toString()
 
 //                    Log.e(TAG, "generateCourse: " + course.id)
 //                    Log.e(TAG, "generateCourse: " + course.name)

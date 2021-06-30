@@ -24,7 +24,7 @@ class CreateCourseActivity : AppCompatActivity() {
     private lateinit var yearRef: CollectionReference
 
     private lateinit var mainLayout: CoordinatorLayout
-    private lateinit var btnAdd : FloatingActionButton
+    private lateinit var btnAdd: FloatingActionButton
     private lateinit var btnBack: ImageView
     private lateinit var txtHeader: TextView
     private lateinit var txtSubtitle: TextView
@@ -54,20 +54,20 @@ class CreateCourseActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        mainLayout          = findViewById(R.id.main_layout)
-        btnBack             = findViewById(R.id.back_button)
-        txtHeader           = findViewById(R.id.header_title)
-        txtSubtitle         = findViewById(R.id.header_subtitle)
-        txtActions          = findViewById(R.id.txt_actions)
-        btnAdd              = findViewById(R.id.button_create)
+        mainLayout = findViewById(R.id.main_layout)
+        btnBack = findViewById(R.id.back_button)
+        txtHeader = findViewById(R.id.header_title)
+        txtSubtitle = findViewById(R.id.header_subtitle)
+        txtActions = findViewById(R.id.txt_actions)
+        btnAdd = findViewById(R.id.button_create)
 
-        courseName          = findViewById(R.id.text_name)
-        courseProfessor     = findViewById(R.id.text_professor)
-        courseID            = findViewById(R.id.text_id)
-        courseSemester      = findViewById(R.id.text_semester)
+        courseName = findViewById(R.id.text_name)
+        courseProfessor = findViewById(R.id.text_professor)
+        courseID = findViewById(R.id.text_id)
+        courseSemester = findViewById(R.id.text_semester)
     }
 
-    private fun initInfo () {
+    private fun initInfo() {
         btnBack.setOnClickListener {
             onBackPressed()
         }
@@ -115,15 +115,16 @@ class CreateCourseActivity : AppCompatActivity() {
             course["professor"] = courseProfessor.text.toString()
             course["semester"] = semester
 
-            yearRef.document(courseID.text.toString().uppercase()).set(course).addOnSuccessListener {
-                val intent = Intent(this, CourseBrowserActivity::class.java)
+            yearRef.document(courseID.text.toString().uppercase()).set(course)
+                .addOnSuccessListener {
+                    val intent = Intent(this, CourseBrowserActivity::class.java)
 
-                val bundle = Bundle()
-                bundle.putSerializable("user", userData)
-                intent.putExtras(bundle)
+                    val bundle = Bundle()
+                    bundle.putSerializable("user", userData)
+                    intent.putExtras(bundle)
 
-                startActivity(intent)
-            }.addOnFailureListener {
+                    startActivity(intent)
+                }.addOnFailureListener {
                 Snackbar.make(mainLayout, "Error: " + it.message, Snackbar.LENGTH_SHORT).show()
 
                 val intent = Intent(this, CourseBrowserActivity::class.java)

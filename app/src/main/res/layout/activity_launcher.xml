@@ -2,26 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LauncherActivity"
 
-    android:id="@+id/main_layout"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LauncherActivity">
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:visibility="invisible"
-
         android:fontFamily="@font/roboto_slab"
+
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/kTitleTextColour"
         android:textSize="60sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/lottieAnimationView" />
 
     <com.airbnb.lottie.LottieAnimationView

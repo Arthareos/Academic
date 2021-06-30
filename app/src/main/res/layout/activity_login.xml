@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    android:background="@drawable/background"
 
     android:orientation="vertical"
-    android:background="@drawable/background">
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,11 +21,11 @@
             android:layout_margin="16dp"
             android:background="@drawable/card_light"
 
-            android:padding="16dp"
             android:elevation="64dp"
-
             android:gravity="center"
-            android:orientation="vertical">
+
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/title"
@@ -78,37 +78,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
 
-                android:layout_marginTop="16dp">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_register"
 
-                    android:text="@string/var_register"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1"
 
-                    android:layout_marginRight="8dp"
+                    android:background="@drawable/edit_text_box"
                     android:gravity="center"
 
-                    android:background="@drawable/edit_text_box"/>
+                    android:text="@string/var_register" />
 
                 <Button
                     android:id="@+id/btn_login"
 
-                    android:text="@string/var_login"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_weight="1"
 
-                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/edit_text_box"
                     android:gravity="center"
 
-                    android:background="@drawable/edit_text_box" />
+                    android:text="@string/var_login" />
             </LinearLayout>
 
         </LinearLayout>

@@ -20,8 +20,8 @@ import java.util.*
 class PhotoSourceFragment(private var service: GoogleService, private var userData: User) :
     BottomSheetDialogFragment() {
 
-    private lateinit var btnGallery : Button
-    private lateinit var btnCamera : Button
+    private lateinit var btnGallery: Button
+    private lateinit var btnCamera: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,8 @@ class PhotoSourceFragment(private var service: GoogleService, private var userDa
 
         btnGallery = view.findViewById(R.id.btn_gallery)
         btnGallery.setOnClickListener {
-            ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).cropSquare().start()
+            ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).cropSquare()
+                .start()
         }
 
         btnCamera = view.findViewById(R.id.btn_camera)

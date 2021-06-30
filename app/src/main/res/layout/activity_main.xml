@@ -2,37 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
 
-    android:orientation="vertical"
     android:background="@drawable/background"
-    android:id="@+id/main_layout">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-
         android:background="@drawable/header_light"
+
         android:elevation="64dp"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+            android:fontFamily="@font/roboto_slab"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/kTitleTextColour"
-            android:fontFamily="@font/roboto_slab"
-            android:textSize="36sp"
-            />
+            android:textSize="36sp" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -43,17 +41,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-
-            android:text="About you."
-            android:fontFamily="@font/roboto_slab"
+            android:layout_marginBottom="8dp"
 
             android:ellipsize="end"
-            android:scrollHorizontally="true"
+            android:fontFamily="@font/roboto_slab"
+
             android:maxLines="2"
+            android:scrollHorizontally="true"
+            android:text="About you."
 
             android:textColor="@color/kTitleTextColour"
             android:textSize="24sp" />
@@ -63,16 +61,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="@drawable/card_light"
-            app:cardElevation="64dp"
-            app:cardCornerRadius="8dp"
-
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+
+            android:background="@drawable/card_light"
+            android:clickable="true"
+
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="64dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -93,12 +91,12 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
 
-                    android:src="@drawable/profile_pic"
-
                     android:layout_centerHorizontal="true"
+
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
+                    android:src="@drawable/profile_pic"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -165,17 +163,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-
-            android:text="What are you looking for?"
-            android:fontFamily="@font/roboto_slab"
+            android:layout_marginBottom="8dp"
 
             android:ellipsize="end"
-            android:scrollHorizontally="true"
+            android:fontFamily="@font/roboto_slab"
+
             android:maxLines="2"
+            android:scrollHorizontally="true"
+            android:text="What are you looking for?"
 
             android:textColor="@color/kTitleTextColour"
             android:textSize="24sp" />
@@ -185,16 +183,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="@drawable/card_light"
-            app:cardElevation="64dp"
-            app:cardCornerRadius="8dp"
-
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+
+            android:background="@drawable/card_light"
+            android:clickable="true"
+
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="64dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -210,13 +208,13 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
 
-                    android:textAlignment="center"
-
                     android:ellipsize="end"
+
                     android:fontFamily="@font/roboto_slab"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
                     android:text="Courses"
+                    android:textAlignment="center"
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="24sp"
 
@@ -232,16 +230,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="@drawable/card_light"
-            app:cardElevation="64dp"
-            app:cardCornerRadius="8dp"
-
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+
+            android:background="@drawable/card_light"
+            android:clickable="true"
+
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="64dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -257,61 +255,13 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
 
-                    android:textAlignment="center"
-
                     android:ellipsize="end"
+
                     android:fontFamily="@font/roboto_slab"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
                     android:text="Academic Works"
-                    android:textColor="@color/kTitleTextColour"
-                    android:textSize="24sp"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_book"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:background="@drawable/card_light"
-            app:cardElevation="64dp"
-            app:cardCornerRadius="8dp"
-
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/txt_book"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-
                     android:textAlignment="center"
-
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto_slab"
-                    android:maxLines="1"
-                    android:scrollHorizontally="true"
-                    android:text="Books"
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="24sp"
 
@@ -322,6 +272,5 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </LinearLayout>

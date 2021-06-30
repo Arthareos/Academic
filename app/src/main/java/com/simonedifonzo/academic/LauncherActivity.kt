@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.simonedifonzo.academic.classes.Course
 import com.simonedifonzo.academic.classes.GoogleService
 import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
@@ -18,10 +17,10 @@ import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class LauncherActivity : AppCompatActivity() {
-    private var service:    GoogleService   = GoogleService()
-    private var userData:   User            = User()
+    private var service: GoogleService = GoogleService()
+    private var userData: User = User()
 
-    private lateinit var mainLayout : ConstraintLayout
+    private lateinit var mainLayout: ConstraintLayout
 
     private lateinit var txt_title: TextView
     private lateinit var layout_navigation: LinearLayout
@@ -37,11 +36,11 @@ class LauncherActivity : AppCompatActivity() {
 
         service = GoogleService()
 
-        mainLayout          = findViewById(R.id.main_layout)
-        txt_title           = findViewById(R.id.app_name)
-        layout_navigation   = findViewById(R.id.bottom_navigation)
-        btn_login           = findViewById(R.id.btn_login)
-        btn_register        = findViewById(R.id.btn_register)
+        mainLayout = findViewById(R.id.main_layout)
+        txt_title = findViewById(R.id.app_name)
+        layout_navigation = findViewById(R.id.bottom_navigation)
+        btn_login = findViewById(R.id.btn_login)
+        btn_register = findViewById(R.id.btn_register)
 
         GlobalScope.launch(Dispatchers.IO) {
 
@@ -65,8 +64,8 @@ class LauncherActivity : AppCompatActivity() {
             }
 
             withContext(Dispatchers.Main) {
-                txt_title.visibility            = View.VISIBLE
-                layout_navigation.visibility    = View.VISIBLE
+                txt_title.visibility = View.VISIBLE
+                layout_navigation.visibility = View.VISIBLE
             }
 
             btn_login.setOnClickListener {
@@ -90,26 +89,17 @@ class LauncherActivity : AppCompatActivity() {
 
             val document = it.result
             if (it.isSuccessful && document != null) {
-                userData.email      = document.getString("email").toString()
-                userData.first      = document.getString("first").toString()
-                userData.last       = document.getString("last").toString()
+                userData.email = document.getString("email").toString()
+                userData.first = document.getString("first").toString()
+                userData.last = document.getString("last").toString()
                 userData.profilePic = document.getString("profilePic").toString()
                 userData.lastChange = document.getString("lastChange").toString()
-                userData.rank       = document.getString("rank").toString()
+                userData.rank = document.getString("rank").toString()
 
-                if(document.getString("specialization").toString() != "null") {
+                if (document.getString("specialization").toString() != "null") {
                     userData.specialization = Specialization.createSpecialization(
-                        document.getString("specialization").toString())
-                }
-
-                if (userData.rank == "admin") {
-                    userData.starredCourses.clear()
-
-                    val data     = document.get("starredCourses").toString()
-                    val array    = data.subSequence(1, data.length - 1).split(", ")
-                    for (course in array) {
-                        userData.starredCourses.add(Course.generateCourse(service, course))
-                    }
+                        document.getString("specialization").toString()
+                    )
                 }
             }
         }.await()
@@ -121,7 +111,11 @@ class LauncherActivity : AppCompatActivity() {
             return
 
         } else {
-            Toast.makeText(this@LauncherActivity, "Press back again to exit app", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@LauncherActivity,
+                "Press back again to exit app",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         backPressedTime = System.currentTimeMillis()

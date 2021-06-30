@@ -19,20 +19,19 @@ import kotlinx.coroutines.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var service:    GoogleService   = GoogleService()
-    private var userData:   User            = User()
+    private var service: GoogleService = GoogleService()
+    private var userData: User = User()
 
-    private lateinit var mainLayout : LinearLayout
+    private lateinit var mainLayout: LinearLayout
 
-    private lateinit var picProfile : CircleImageView
-    private lateinit var picVerified : ImageView
-    private lateinit var txtName : TextView
-    private lateinit var txtEmail : TextView
+    private lateinit var picProfile: CircleImageView
+    private lateinit var picVerified: ImageView
+    private lateinit var txtName: TextView
+    private lateinit var txtEmail: TextView
 
-    private lateinit var cardAbout : CardView
-    private lateinit var cardCourse : CardView
-    private lateinit var cardAcademic : CardView
-    private lateinit var cardBook : CardView
+    private lateinit var cardAbout: CardView
+    private lateinit var cardCourse: CardView
+    private lateinit var cardAcademic: CardView
 
     private var backPressedTime: Long = 0
 
@@ -46,29 +45,19 @@ class MainActivity : AppCompatActivity() {
         userData = intent.getSerializableExtra("user") as User
 
         initInfo()
-
-//        GlobalScope.launch(Dispatchers.IO) { {
-//            delay(5000)
-//            withContext(Dispatchers.Main) {
-//                // if we use `Dispatchers.Main` as a coroutine context next two lines will be executed on UI thread.
-//                doSomething()
-//                doAnotherThing()
-//            }
-//        }
     }
 
     private fun initViews() {
         mainLayout = findViewById(R.id.main_layout)
 
-        picProfile  = findViewById(R.id.pic_profile)
+        picProfile = findViewById(R.id.pic_profile)
         picVerified = findViewById(R.id.verified_tick)
-        txtName     = findViewById(R.id.txt_name)
-        txtEmail    = findViewById(R.id.txt_email)
+        txtName = findViewById(R.id.txt_name)
+        txtEmail = findViewById(R.id.txt_email)
 
-        cardAbout       = findViewById(R.id.card_about)
-        cardCourse      = findViewById(R.id.card_course)
-        cardAcademic    = findViewById(R.id.card_academic)
-        cardBook        = findViewById(R.id.card_book)
+        cardAbout = findViewById(R.id.card_about)
+        cardCourse = findViewById(R.id.card_course)
+        cardAcademic = findViewById(R.id.card_academic)
     }
 
     private fun initInfo() {
@@ -83,8 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Check if user is email verified
-        if (service.auth.currentUser?.isEmailVerified != true)
-        {
+        if (service.auth.currentUser?.isEmailVerified != true) {
             picVerified.isVisible = false
         }
 
@@ -105,9 +93,14 @@ class MainActivity : AppCompatActivity() {
 
         cardCourse.setOnClickListener {
             if (userData.specialization.university == "null") {
-                Snackbar.make(mainLayout, "You don't have a specialization selected", Snackbar.LENGTH_LONG)
+                Snackbar.make(
+                    mainLayout,
+                    "You don't have a specialization selected",
+                    Snackbar.LENGTH_LONG
+                )
                     .setAction("Select") {
-                        val intent = Intent(this@MainActivity, SelectSpecializationActivity::class.java)
+                        val intent =
+                            Intent(this@MainActivity, SelectSpecializationActivity::class.java)
 
                         val bundle = Bundle()
                         bundle.putSerializable("user", userData)
@@ -130,9 +123,14 @@ class MainActivity : AppCompatActivity() {
 
         cardAcademic.setOnClickListener {
             if (userData.specialization.university == "null") {
-                Snackbar.make(mainLayout, "You don't have a specialization selected", Snackbar.LENGTH_LONG)
+                Snackbar.make(
+                    mainLayout,
+                    "You don't have a specialization selected",
+                    Snackbar.LENGTH_LONG
+                )
                     .setAction("Select") {
-                        val intent = Intent(this@MainActivity, SelectSpecializationActivity::class.java)
+                        val intent =
+                            Intent(this@MainActivity, SelectSpecializationActivity::class.java)
 
                         val bundle = Bundle()
                         bundle.putSerializable("user", userData)
@@ -160,7 +158,8 @@ class MainActivity : AppCompatActivity() {
             return
 
         } else {
-            Toast.makeText(this@MainActivity, "Press back again to exit app", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "Press back again to exit app", Toast.LENGTH_SHORT)
+                .show()
         }
 
         backPressedTime = System.currentTimeMillis()

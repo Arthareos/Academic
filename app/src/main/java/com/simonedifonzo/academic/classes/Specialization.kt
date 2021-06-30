@@ -3,9 +3,9 @@ package com.simonedifonzo.academic.classes
 import java.io.Serializable
 
 class Specialization : Serializable {
-    var university  = "null"
-    var faculty     = "null"
-    var year        = "null"
+    var university = "null"
+    var faculty = "null"
+    var year = "null"
 
     constructor() {
         this.university = "null"

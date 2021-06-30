@@ -21,23 +21,23 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private var service:    GoogleService   = GoogleService()
-    private var userData:   User            = User()
+    private var service: GoogleService = GoogleService()
+    private var userData: User = User()
 
-    private lateinit var emailBox:    EditText
+    private lateinit var emailBox: EditText
     private lateinit var passwordBox: EditText
     private lateinit var btnRegister: Button
-    private lateinit var btnLogin:    Button
+    private lateinit var btnLogin: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Objects.requireNonNull(this.supportActionBar)!!.hide()
 
-        emailBox      = findViewById(R.id.emailBox)
-        passwordBox   = findViewById(R.id.passwordBox)
-        btnLogin      = findViewById(R.id.btn_login)
-        btnRegister   = findViewById(R.id.btn_register)
+        emailBox = findViewById(R.id.emailBox)
+        passwordBox = findViewById(R.id.passwordBox)
+        btnLogin = findViewById(R.id.btn_login)
+        btnRegister = findViewById(R.id.btn_register)
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -95,7 +95,8 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         val message: String? = task.exception?.message
-                        Toast.makeText(this@LoginActivity, "Error: $message", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Error: $message", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
         })
@@ -110,24 +111,17 @@ class LoginActivity : AppCompatActivity() {
 
             var document = task.result
             if (task.isSuccessful && document != null) {
-                userData.email      = document.getString("email").toString()
-                userData.first      = document.getString("first").toString()
-                userData.last       = document.getString("last").toString()
+                userData.email = document.getString("email").toString()
+                userData.first = document.getString("first").toString()
+                userData.last = document.getString("last").toString()
                 userData.profilePic = document.getString("profilePic").toString()
                 userData.lastChange = document.getString("lastChange").toString()
 
-                if(document.getString("specialization").toString() != "null") {
+                if (document.getString("specialization").toString() != "null") {
                     userData.specialization = Specialization.createSpecialization(
-                        document.getString("specialization").toString())
+                        document.getString("specialization").toString()
+                    )
                 }
-
-//                userData.starredCourses.clear()
-//
-//                val data     = document.get("starredCourses").toString()
-//                val array    = data.subSequence(1, data.length - 1).split(", ")
-//                for (course in array) {
-//                    userData.starredCourses.add(Course.generateCourse(service, course))
-//                }
             }
         }.await()
     }
