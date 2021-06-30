@@ -9,11 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
 import com.simonedifonzo.academic.LauncherActivity
-import com.simonedifonzo.academic.LoginActivity
 import com.simonedifonzo.academic.R
-import com.simonedifonzo.academic.classes.Course
 import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
 import java.util.*
 
@@ -110,7 +107,10 @@ class SelectSpecializationActivity : AppCompatActivity() {
         btnAdd.setOnClickListener {
             service.firestore.collection("users")
                 .document(service.auth.uid.toString())
-                .update("specialization", universitiesIdList[universitySpinner.selectedItemPosition] + " " + facultiesIdList[facultySpinner.selectedItemPosition] + " " + yearsIdList[yearSpinner.selectedItemPosition])
+                .update("specialization",
+                    universitiesIdList[universitySpinner.selectedItemPosition]
+                            + " " + facultiesIdList[facultySpinner.selectedItemPosition]
+                            + " " + yearsIdList[yearSpinner.selectedItemPosition])
 
             val intent = Intent(this@SelectSpecializationActivity, LauncherActivity::class.java)
             startActivity(intent)

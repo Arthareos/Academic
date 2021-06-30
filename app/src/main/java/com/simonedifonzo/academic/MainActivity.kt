@@ -11,7 +11,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
 import com.simonedifonzo.academic.helpers.SelectSpecializationActivity
 import com.squareup.picasso.Picasso

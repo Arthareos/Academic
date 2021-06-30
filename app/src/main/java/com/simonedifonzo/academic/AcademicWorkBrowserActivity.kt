@@ -1,6 +1,7 @@
 package com.simonedifonzo.academic
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -14,20 +15,18 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
-import com.simonedifonzo.academic.classes.Course
-import com.simonedifonzo.academic.classes.CourseAdapter
-import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.User
+import com.simonedifonzo.academic.classes.*
+import com.simonedifonzo.academic.helpers.CreateAcademicWorkActivity
 import com.simonedifonzo.academic.helpers.ResourceTypeFragment
 import java.util.*
 
-class AcademicWorkBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickListener {
+class AcademicWorkBrowserActivity : AppCompatActivity(), AcademicWorkAdapter.OnClickListener {
 
     private var service: GoogleService = GoogleService()
     private var userData: User = User()
 
     private lateinit var coursesRef: CollectionReference
-    private lateinit var adapter: CourseAdapter
+    private lateinit var adapter: AcademicWorkAdapter
 
     private lateinit var mainLayout : LinearLayout
     private lateinit var btnBack : ImageView
@@ -51,7 +50,7 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickLi
             .document(userData.specialization.university)
             .collection("faculties")
             .document(userData.specialization.faculty)
-            .collection("academicWorks")
+            .collection("academic")
 
         initInfo()
     }
@@ -75,29 +74,30 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickLi
                 + " // "
                 + userData.specialization.faculty
                 + " // "
-                + "academicWorks")
+                + "academic")
 
 
         if (userData.rank == "user") {
             btnAdd.visibility = View.GONE
         }
 
-//        resourceTypeFragment = ResourceTypeFragment(userData = userData, service = service)
         btnAdd.setOnClickListener {
-            // TODO: Add functionality
+            val intent = Intent(this, CreateAcademicWorkActivity::class.java)
 
-            Toast.makeText(this, "Pending functionality", Toast.LENGTH_SHORT).show()
+            val bundle = Bundle()
+            bundle.putSerializable("user", userData)
+            intent.putExtras(bundle)
 
-//            resourceTypeFragment.show(supportFragmentManager, "resourceTypeFragment")
+            startActivity(intent)
         }
 
         val query: Query = coursesRef.orderBy("name", Query.Direction.ASCENDING)
 
-        val options: FirestoreRecyclerOptions<Course> = FirestoreRecyclerOptions.Builder<Course>()
-            .setQuery(query, Course::class.java)
+        val options: FirestoreRecyclerOptions<AcademicWork> = FirestoreRecyclerOptions.Builder<AcademicWork>()
+            .setQuery(query, AcademicWork::class.java)
             .build()
 
-        adapter = CourseAdapter(options, this)
+        adapter = AcademicWorkAdapter(options, this)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -106,19 +106,17 @@ class AcademicWorkBrowserActivity : AppCompatActivity(), CourseAdapter.OnClickLi
     }
 
     override fun onItemClick(position: Int) {
-        // TODO: Add functionality
+        val clickedItem = adapter.getItem(position)
 
-//        Toast.makeText(this, "Item $position", Toast.LENGTH_SHORT).show()
-//        val clickedItem = adapter.getItem(position).
+        var fileRef = service.storage?.child(clickedItem.link)
 
-//        val intent = Intent(this@AcademicWorkBrowserActivity, CourseActivity::class.java)
-//
-//        val bundle = Bundle()
-//        bundle.putSerializable("user", userData)
-//        bundle.putSerializable("course", adapter.getItem(position))
-//        intent.putExtras(bundle)
-//
-//        startActivity(intent)
+        fileRef?.downloadUrl?.addOnSuccessListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.toString()))
+            startActivity(browserIntent)
+
+        }?.addOnFailureListener {
+            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onBackPressed() {

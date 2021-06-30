@@ -1,17 +1,16 @@
 package com.simonedifonzo.academic.helpers
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.CollectionReference
-import com.simonedifonzo.academic.CourseActivity
 import com.simonedifonzo.academic.CourseBrowserActivity
 import com.simonedifonzo.academic.R
 import com.simonedifonzo.academic.classes.*
@@ -43,7 +42,7 @@ class CreateCourseActivity : AppCompatActivity() {
 
         initViews()
 
-        userData    = intent.getSerializableExtra("user") as User
+        userData = intent.getSerializableExtra("user") as User
 
         yearRef = service.firestore.collection("universities")
             .document(userData.specialization.university)

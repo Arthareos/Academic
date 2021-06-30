@@ -33,7 +33,7 @@ public class CourseAdapter(
     inner class CourseHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var tvTitle: TextView = itemView.findViewById(R.id.text_view_title)
         var tvDescription: TextView = itemView.findViewById(R.id.text_view_description)
-        var tvCode: TextView = itemView.findViewById(R.id.text_view_code)
+        var tvCode: TextView = itemView.findViewById(R.id.text_view_type)
 
         init {
             itemView.setOnClickListener(this)

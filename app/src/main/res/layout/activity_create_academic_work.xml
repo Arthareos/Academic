@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".helpers.CreateDocumentResource"
+
+    tools:context=".helpers.CreateAcademicWorkActivity"
     android:background="@drawable/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/main_layout">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create"
@@ -45,7 +47,7 @@
                 android:maxLines="2"
 
                 android:fontFamily="@font/roboto_slab"
-                android:text="Create new PDF resource"
+                android:text="Add new AcademicWork"
                 android:textColor="@color/kTitleTextColour"
 
                 android:textSize="24sp"
@@ -66,7 +68,7 @@
                 android:maxLines="1"
 
                 android:fontFamily="@font/roboto_slab"
-                android:text="Course name"
+                android:text="Path"
                 android:textColor="@color/kTitleTextColour"
                 android:textSize="16sp"
 
@@ -107,7 +109,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Resource details:"
+                    android:text="Work details:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -122,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Resource name"
+                    android:text="Work name:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -140,7 +142,7 @@
                     android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Name"
+                    android:hint="Work name"
                     android:textColorHint="@color/kSubtextColour"
                     android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
@@ -153,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Resource description"
+                    android:text="Work author:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -164,14 +166,14 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/text_description"
+                    android:id="@+id/text_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
 
                     android:background="@drawable/edit_text_box"
-                    android:hint="Description"
+                    android:hint="Author name"
                     android:textColorHint="@color/kSubtextColour"
                     android:textColor="@color/kTextColour"
                     android:fontFamily="@font/roboto_slab"
@@ -180,14 +182,12 @@
                     android:inputType="textAutoComplete" />
 
                 <TextView
-                    android:id="@+id/text_file"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
 
-                    android:text="File not selected"
+                    android:text="Work type:"
                     android:fontFamily="@font/roboto_slab"
-                    android:visibility="gone"
 
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
@@ -196,12 +196,21 @@
                     android:textColor="@color/kTitleTextColour"
                     android:textSize="16sp" />
 
+                <Spinner
+                    android:id="@+id/text_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+
+                    android:background="@drawable/edit_text_box"
+                    android:layout_marginBottom="16dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
 
-                    android:text="Select resource"
+                    android:text="File select:"
                     android:fontFamily="@font/roboto_slab"
 
                     android:ellipsize="end"
@@ -224,4 +233,5 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CourseActivity"
+    tools:context=".helpers.CreateMediaResource"
     android:background="@drawable/background"
     android:orientation="vertical">
 

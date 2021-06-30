@@ -7,7 +7,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.simonedifonzo.academic.classes.GoogleService
-import com.simonedifonzo.academic.classes.Specialization
 import com.simonedifonzo.academic.classes.User
 import com.simonedifonzo.academic.helpers.PhotoSourceFragment
 import com.simonedifonzo.academic.helpers.SelectSpecializationActivity
