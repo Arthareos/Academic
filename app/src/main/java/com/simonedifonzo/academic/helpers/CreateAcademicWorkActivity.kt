@@ -196,8 +196,12 @@ class CreateAcademicWorkActivity : AppCompatActivity() {
 
     private fun uploadPdfToFirebase(fileUri: Uri, id: String) {
 
-        val path =
-            "resources/" + userData.specialization.university + "/" + userData.specialization.faculty + "/" + userData.specialization.year + "/" + id + "/" + workName.text.toString() + ".pdf"
+        val path = ("resources/"
+                + userData.specialization.university
+                + "/" + userData.specialization.faculty
+                + "/academic"
+                + "/" + id
+                + "/" + workName.text.toString() + ".pdf")
 
         val fileRef: StorageReference? = service.storage?.child(path)
 
