@@ -186,7 +186,7 @@ class SelectSpecializationActivity : AppCompatActivity() {
 
             val document = it.result
             if (it.isSuccessful && document != null) {
-                val data = document.get("bachelor").toString()
+                val data = document.get("years").toString()
 
                 if (data != "null") {
                     val array = data.subSequence(1, data.length - 1).split(", ")
