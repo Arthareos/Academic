@@ -81,9 +81,9 @@ class CourseActivity : AppCompatActivity(), ResourceAdapter.OnClickListener {
             btnAdd.visibility = View.GONE
         }
 
-        resourceTypeFragment =
-            ResourceTypeFragment(userData = userData, service = service, course = course)
         btnAdd.setOnClickListener {
+            resourceTypeFragment =
+                ResourceTypeFragment(userData = userData, service = service, course = course)
             resourceTypeFragment.show(supportFragmentManager, "resourceTypeFragment")
         }
 
